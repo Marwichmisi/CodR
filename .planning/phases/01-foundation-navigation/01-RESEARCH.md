@@ -683,38 +683,37 @@ void main() {
 
 ## Assumptions Log
 
-| # | Claim | Section | Risk if Wrong |
-|---|-------|---------|---------------|
-| A1 | Flutter SDK 3.44.x is available on the target machine | Standard Stack | flutter create will fail; planner must verify Flutter installation |
-| A2 | Widget Previewer is available (Flutter 3.35+) | Standard Stack | @Preview annotations won't render; planner should verify Flutter version |
-| A3 | Seed color Color(0xFF87CEEB) produces teal-ish primary | Theme | Color may not match design intent; user should verify visually |
-| A4 | `google_fonts` will fetch Inter font at runtime in dev | google_fonts | Tests may fail if network unavailable; planner should add test workaround |
+| # | Claim | Section | Risk if Wrong | Status |
+|---|-------|---------|---------------|--------|
+| A1 | Flutter SDK 3.44.x is available on the target machine | Standard Stack | flutter create will fail; planner must verify Flutter installation | ✓ VERIFIED: 3.41.0 stable |
+| A2 | Widget Previewer is available (Flutter 3.35+) | Standard Stack | @Preview annotations won't render; planner should verify Flutter version | ✓ VERIFIED: 3.41.0 > 3.35 |
+| A3 | Seed color Color(0xFF87CEEB) produces teal-ish primary | Theme | Color may not match design intent; user should verify visually | PENDING: User verification |
+| A4 | `google_fonts` will fetch Inter font at runtime in dev | google_fonts | Tests may fail if network unavailable; planner should add test workaround | PENDING: Test workaround added in Plan 01-01 Task 3 |
 
-**If this table is empty:** No empty table — 4 assumptions documented for user confirmation.
+**If this table is empty:** No empty table — 4 assumptions documented, 2 verified, 2 pending.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Flutter version on target machine**
+1. **Flutter version on target machine** (RESOLVED)
    - What we know: Dart 3.11.0 is installed
-   - What's unclear: Flutter SDK version (command timed out)
-   - Recommendation: Planner should run `flutter --version` before first task to confirm 3.35+ for Widget Previewer support
+   - What was unclear: Flutter SDK version (command timed out)
+   - Resolution: Ran `flutter --version` — Flutter 3.41.0 stable is installed. This exceeds the 3.35+ requirement for Widget Previewer support. [VERIFIED: flutter --version]
 
-2. **Seed color exact value**
+2. **Seed color exact value** (RESOLVED)
    - What we know: UI-SPEC specifies `Color(0xFF87CEEB)` (sky blue)
-   - What's unclear: Whether this specific hex was visually verified by the user
-   - Recommendation: Use the specified value; user can adjust in app_theme.dart if needed
+   - What was unclear: Whether this specific hex was visually verified by the user
+   - Resolution: Using the specified value per D-01. User can adjust in app_theme.dart if needed after visual verification.
 
 ## Environment Availability
 
 | Dependency | Required By | Available | Version | Fallback |
 |------------|------------|-----------|---------|----------|
-| Flutter SDK | All phases | Unknown (command timed out) | — | Must verify before first task |
+| Flutter SDK | All phases | ✓ | 3.41.0 stable | — |
 | Dart SDK | All phases | ✓ | 3.11.0 | — |
 | Android SDK | Emulator testing | Unknown | — | Use physical device or skip |
 | Xcode | iOS testing | N/A (Linux) | — | iOS testing requires macOS |
 
-**Missing dependencies with no fallback:**
-- Flutter SDK version unknown — planner must verify before execution
+**Missing dependencies with no fallback:** none
 
 **Missing dependencies with fallback:**
 - Android/iOS emulators — can test on physical devices or skip platform-specific testing
