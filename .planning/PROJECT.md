@@ -50,6 +50,7 @@ Scanner un QR code et obtenir le contenu instantanément, avec la possibilité d
 - **Hors-ligne**: Pas de connexion serveur requise, tout en local
 - **Performance**: Le scan doit être réactif (< 2 secondes)
 - **Compatibilité**: iOS et Android minimum
+- **Skills Flutter obligatoires**: Utiliser les skills Flutter installés (`.agents/skills/flutter-*`) pour suivre les bonnes pratiques et produire du code de qualité. Skills disponibles : architecture best practices (MVVM), widget tests, widget previews, responsive layout, JSON serialization, routing déclaratif, localization, HTTP package, fix layout issues
 
 ## Key Decisions
 
@@ -59,6 +60,7 @@ Scanner un QR code et obtenir le contenu instantanément, avec la possibilité d
 | Texte + URLs uniquement | Simplicité pour v1, les types QR complexes ajoutent de la complexité | — Pending |
 | Material 3 | Design standard Google, bien supporté par Flutter | — Pending |
 | Pas de backend | App simple, données en local, pas de besoin de sync | — Pending |
+| Skills Flutter obligatoires | Suivre les bonnes pratiques via les skills installés (architecture, tests, previews, etc.) | — Pending |
 
 ## Evolution
 
