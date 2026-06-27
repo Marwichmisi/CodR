@@ -46,7 +46,12 @@ class StorageService {
 
   Future<void> insertRecord(String table, Map<String, dynamic> data) async {
     final db = await database;
-    await db.insert(table, data);
+    // Remove 'id' key if value is 0 (autoincrement placeholder)
+    final insertData = Map<String, dynamic>.from(data);
+    if (insertData['id'] == 0) {
+      insertData.remove('id');
+    }
+    await db.insert(table, insertData);
   }
 
   Future<List<Map<String, dynamic>>> getAll(String table) async {
