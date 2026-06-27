@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'navigation/app_router.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -10,18 +12,11 @@ class QRScannerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'QR Scanner',
       theme: buildLightTheme(),
+      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('QR Scanner'),
-        ),
-        body: const Center(
-          child: Text('QR Scanner'),
-        ),
-      ),
     );
   }
 }
