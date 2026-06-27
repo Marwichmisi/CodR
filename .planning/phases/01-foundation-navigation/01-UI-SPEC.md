@@ -1,7 +1,7 @@
 ---
 phase: 1
 slug: foundation-navigation
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-06-27
@@ -60,13 +60,13 @@ Font family: **Inter** (applied via `GoogleFonts.interTextTheme()`). 4 sizes, 2 
 | Display | 28px | w600 (semibold) | 1.2 | Placeholder screen titles |
 | Title | 20px | w600 (semibold) | 1.3 | AppBar titles |
 | Body | 16px | w400 (regular) | 1.5 | Default text, placeholder subtitles, descriptions |
-| Label | 14px | w500 (medium) | 1.4 | Bottom nav labels, button text, small UI text |
+| Label | 14px | w400 (regular) | 1.4 | Bottom nav labels, button text, small UI text |
 
 **Usage rules:**
 - AppBar title: Title size (20px, w600).
 - Placeholder screen main title: Display size (28px, w600).
 - Placeholder screen subtitle/body: Body size (16px, w400).
-- Bottom nav tab labels: Label size (14px, w500).
+- Bottom nav tab labels: Label size (14px, w400).
 - Never use sizes outside this set. No hardcoded font values — always use `Theme.of(context).textTheme`.
 
 ---
@@ -163,7 +163,7 @@ Each placeholder screen follows the **identical** layout:
 │                             │
 │                             │
 ├─────────────────────────────┤
-│  NavigationBar (3 tabs)     │  ← Label size (14px, w500)
+│  NavigationBar (3 tabs)     │  ← Label size (14px, w400)
 └─────────────────────────────┘
 ```
 
@@ -210,11 +210,11 @@ Not applicable — Flutter Material 3 project. No shadcn, no third-party registr
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-06-27
