@@ -101,32 +101,32 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCAN-04 | Phase 2 | Pending |
 | SCAN-05 | Phase 2 | Pending |
 | SCAN-06 | Phase 2 | Pending |
-| SCAN-07 | Phase 2 | Pending |
-| SCAN-08 | Phase 2 | Pending |
-| GEN-01 | Phase 3 | Pending |
-| GEN-02 | Phase 3 | Pending |
-| GEN-03 | Phase 3 | Pending |
-| GEN-04 | Phase 3 | Pending |
-| GEN-05 | Phase 3 | Pending |
-| GEN-06 | Phase 3 | Pending |
-| GEN-07 | Phase 3 | Pending |
-| HIST-01 | Phase 4 | Pending |
-| HIST-02 | Phase 4 | Pending |
-| HIST-03 | Phase 4 | Pending |
-| HIST-04 | Phase 4 | Pending |
+| SCAN-07 | Phase 3 | Pending |
+| SCAN-08 | Phase 3 | Pending |
+| GEN-01 | Phase 4 | Pending |
+| GEN-02 | Phase 4 | Pending |
+| GEN-03 | Phase 4 | Pending |
+| GEN-04 | Phase 4 | Pending |
+| GEN-05 | Phase 4 | Pending |
+| GEN-06 | Phase 4 | Pending |
+| GEN-07 | Phase 4 | Pending |
+| HIST-01 | Phase 5 | Pending |
+| HIST-02 | Phase 5 | Pending |
+| HIST-03 | Phase 5 | Pending |
+| HIST-04 | Phase 5 | Pending |
 | UI-01 | Phase 1 | Pending |
 | UI-02 | Phase 2 | Pending |
-| UI-03 | Phase 3 | Pending |
-| UI-04 | Phase 4 | Pending |
+| UI-03 | Phase 4 | Pending |
+| UI-04 | Phase 5 | Pending |
 | UI-05 | Phase 1 | Pending |
-| QUAL-01 | Phase 2 | Pending |
-| QUAL-02 | Phase 3 | Pending |
+| QUAL-01 | Phase 3 | Pending |
+| QUAL-02 | Phase 4 | Pending |
 | QUAL-03 | Phase 1 | Pending |
-| QUAL-04 | Phase 2 | Pending |
+| QUAL-04 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 32 total
-- Mapped to phases: 32
+- v1 requirements: 33 total
+- Mapped to phases: 33
 - Unmapped: 0 ✓
 
 ---
