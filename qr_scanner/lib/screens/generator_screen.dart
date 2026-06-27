@@ -13,7 +13,7 @@ class GeneratorScreen extends StatelessWidget {
         final maxWidth =
             constraints.maxWidth > 600 ? 480.0 : constraints.maxWidth;
         return Scaffold(
-          appBar: AppBar(title: const Text('QR Scanner')), // D-11
+          appBar: AppBar(title: const Text('Générateur')), // D-11
           body: Center(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: maxWidth),
