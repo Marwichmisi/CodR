@@ -8,7 +8,7 @@ Build a Flutter mobile app that scans QR codes via camera and generates QR codes
 
 - [x] **Phase 1: Foundation & Navigation** - Project scaffolded with MVVM, Material 3 theme, navigation, and SQLite storage
 - [x] **Phase 2: Camera Scanner** - QR scanning via camera with permissions, overlay, torch, and lifecycle management (completed 2026-06-28)
-- [ ] **Phase 3: Scan Results & Content Display** - Scanned content shown with URL detection, action buttons, and error handling
+- [x] **Phase 3: Scan Results & Content Display** - Scanned content shown with URL detection, action buttons, and error handling (completed 2026-06-28)
 - [ ] **Phase 4: QR Generation** - Generate QR codes from text input with save, share, and copy capabilities
 - [ ] **Phase 5: History & Data Persistence** - Scan/generation history stored in SQLite with search, filter, and delete
 
@@ -83,12 +83,12 @@ Plans:
   3. Unit tests pass for ScannerViewModel and ResultViewModel
   4. Error states (camera permission denied, scan failure, empty result) show appropriate UI
 
-**Plans**: 2 plans
+**Plans**: 2/2 plans complete
 
 Plans:
 
-- [ ] 03-01: URL detection and content display with action buttons (share_plus, clipboard)
-- [ ] 03-02: Error handling, loading states, and unit tests for ViewModels
+- [x] 03-01-PLAN.md — ContentType model, ResultViewModel, bottom sheet et intégration ScannerScreen
+- [x] 03-02-PLAN.md — Tests unitaires/widget, gestion d'erreur et validation cycle de vie caméra
 
 ### Phase 4: QR Generation
 
@@ -136,6 +136,6 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation & Navigation | 4/4 | ✓ Complete | 2026-06-28 |
 | 2. Camera Scanner | 3/3 | Complete    | 2026-06-28 |
-| 3. Scan Results & Content Display | 0/2 | Not started | - |
+| 3. Scan Results & Content Display | 2/2 | Complete    | 2026-06-28 |
 | 4. QR Generation | 0/3 | Not started | - |
 | 5. History & Data Persistence | 0/2 | Not started | - |
