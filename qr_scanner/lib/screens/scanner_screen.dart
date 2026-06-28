@@ -4,16 +4,20 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:go_router/go_router.dart';
 import '../viewmodels/scanner_viewmodel.dart';
+import '../viewmodels/result_viewmodel.dart';
 import '../services/permission_service.dart';
 import '../theme/app_theme.dart';
+import '../widgets/scan_result_bottom_sheet.dart';
 import 'scanner_overlay_painter.dart';
 
 class ScannerScreen extends StatefulWidget {
   final ScannerViewModel viewModel;
+  final ResultViewModel resultViewModel;
   final MobileScannerController? mockController; // Permet d'injecter un mock en test
 
   const ScannerScreen({
     required this.viewModel,
+    required this.resultViewModel,
     this.mockController,
     super.key,
   });
@@ -248,24 +252,40 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
   }
 
   void _showScanResult(String content) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    
-    final isUrl = Uri.tryParse(content)?.isAbsolute ?? false;
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Code QR scanné : $content'),
-        action: SnackBarAction(
-          label: isUrl ? 'Ouvrir le lien' : 'Fermer',
-          onPressed: () {
-            if (isUrl) {
-              // Action pré-câblée (sera gérée en Phase 3)
-            }
+    // D-09 : Pause immédiate de la caméra
+    if (_isControllerInitialized) {
+      _controller.stop();
+    }
+
+    // Détecter le type de contenu
+    widget.resultViewModel.detectContentType(content);
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true, // D-04 : Poignée de glissement Material 3
+      builder: (context) {
+        return ScanResultBottomSheet(
+          content: content,
+          viewModel: widget.resultViewModel,
+          onRetry: () {
+            // Fermer le bottom sheet et relancer le scan
           },
-        ),
-        duration: const Duration(seconds: 4),
-      ),
-    );
+          onClose: () {
+            // Fermer le bottom sheet simplement
+          },
+        );
+      },
+    ).whenComplete(() {
+      // D-10 : Reprendre la caméra quel que soit le mode de fermeture
+      if (_isControllerInitialized) {
+        _controller.start();
+      }
+      // D-12 : Debounce — court délai avant d'accepter de nouveaux scans
+      Future.delayed(const Duration(seconds: 1), () {
+        // Prêt pour le prochain scan
+      });
+    });
   }
 }
 
@@ -294,6 +314,7 @@ Widget scannerGrantedPreview() {
     theme: buildLightTheme(),
     home: ScannerScreen(
       viewModel: ScannerViewModel(permissionService: _MockGrantedPermissionService()),
+      resultViewModel: ResultViewModel(),
     ),
   );
 }
@@ -304,6 +325,7 @@ Widget scannerDeniedPreview() {
     theme: buildLightTheme(),
     home: ScannerScreen(
       viewModel: ScannerViewModel(permissionService: _MockDeniedPermissionService()),
+      resultViewModel: ResultViewModel(),
     ),
   );
 }

@@ -7,6 +7,7 @@ import 'package:qr_scanner/screens/generator_screen.dart';
 import 'package:qr_scanner/screens/history_screen.dart';
 import 'package:qr_scanner/theme/app_theme.dart';
 import 'package:qr_scanner/viewmodels/scanner_viewmodel.dart';
+import 'package:qr_scanner/viewmodels/result_viewmodel.dart';
 import 'package:qr_scanner/services/permission_service.dart';
 
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -72,7 +73,7 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: ScannerScreen(viewModel: viewModel, mockController: mockController),
+        home: ScannerScreen(viewModel: viewModel, resultViewModel: ResultViewModel(), mockController: mockController),
       ));
       expect(tester.takeException(), isNull);
     });
@@ -85,7 +86,7 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: ScannerScreen(viewModel: viewModel, mockController: mockController),
+        home: ScannerScreen(viewModel: viewModel, resultViewModel: ResultViewModel(), mockController: mockController),
       ));
       expect(tester.takeException(), isNull);
     });
@@ -98,7 +99,7 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: ScannerScreen(viewModel: viewModel, mockController: mockController),
+        home: ScannerScreen(viewModel: viewModel, resultViewModel: ResultViewModel(), mockController: mockController),
       ));
       // Verify ConstrainedBox exists with maxWidth constraint
       expect(find.byType(ConstrainedBox), findsWidgets);
@@ -137,7 +138,7 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: ScannerScreen(viewModel: viewModel, mockController: mockController),
+        home: ScannerScreen(viewModel: viewModel, resultViewModel: ResultViewModel(), mockController: mockController),
       ));
       await tester.pumpAndSettle();
       expect(find.byType(LayoutBuilder), findsWidgets);

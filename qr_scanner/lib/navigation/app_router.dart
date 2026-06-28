@@ -5,6 +5,7 @@ import '../screens/scanner_screen.dart';
 import '../screens/generator_screen.dart';
 import '../screens/history_screen.dart';
 import '../viewmodels/scanner_viewmodel.dart';
+import '../viewmodels/result_viewmodel.dart';
 import '../services/permission_service.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -25,6 +26,7 @@ GoRouter createAppRouter({PermissionService? permissionService, MobileScannerCon
                 viewModel: ScannerViewModel(
                   permissionService: permissionService ?? SystemPermissionService(),
                 ),
+                resultViewModel: ResultViewModel(),
                 mockController: mockController,
               ),
             ),
