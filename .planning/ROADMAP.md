@@ -59,11 +59,15 @@ Plans:
   4. Camera lifecycle is handled correctly — no black screen when returning from other screens
   5. Duplicate scan detections are prevented (single QR triggers one result, not 5-20)
 
-**Plans**: 3 plans
+**Plans**: 2/3 plans executed
 
 Plans:
 
-- [ ] 02-01: Intégration caméra, permissions et overlay (mobile_scanner, permission_handler)
+- [x] 02-01-PLAN.md
+- [ ] 02-02-PLAN.md
+- [x] 02-03-PLAN.md
+
+- [x] 02-01: Intégration caméra, permissions et overlay (mobile_scanner, permission_handler)
 - [ ] 02-02: Contrôle de la torche et cycle de vie (WidgetsBindingObserver)
 - [ ] 02-03: Anti-rebond/dédoublonnage et SnackBar (HapticFeedback, SnackBar)
 
@@ -131,7 +135,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Navigation | 4/4 | ✓ Complete | 2026-06-28 |
-| 2. Camera Scanner | 0/3 | Not started | - |
+| 2. Camera Scanner | 2/3 | In Progress|  |
 | 3. Scan Results & Content Display | 0/2 | Not started | - |
 | 4. QR Generation | 0/3 | Not started | - |
 | 5. History & Data Persistence | 0/2 | Not started | - |
