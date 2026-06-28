@@ -63,9 +63,9 @@ Plans:
 
 Plans:
 
-- [ ] 02-01: Camera integration with permissions and scan overlay (mobile_scanner, permission_handler)
-- [ ] 02-02: Torch toggle and camera lifecycle management (WidgetsBindingObserver)
-- [ ] 02-03: Duplicate detection prevention and scanner screen UI polish
+- [ ] 02-01: Intégration caméra, permissions et overlay (mobile_scanner, permission_handler)
+- [ ] 02-02: Contrôle de la torche et cycle de vie (WidgetsBindingObserver)
+- [ ] 02-03: Anti-rebond/dédoublonnage et SnackBar (HapticFeedback, SnackBar)
 
 ### Phase 3: Scan Results & Content Display
 
