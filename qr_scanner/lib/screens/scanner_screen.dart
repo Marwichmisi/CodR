@@ -250,7 +250,7 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
   void _showScanResult(String content) {
     ScaffoldMessenger.of(context).clearSnackBars();
     
-    final isUrl = Uri.tryParse(content)?.hasAbsolutePath ?? false;
+    final isUrl = Uri.tryParse(content)?.isAbsolute ?? false;
     
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -304,6 +304,50 @@ Widget scannerDeniedPreview() {
     theme: buildLightTheme(),
     home: ScannerScreen(
       viewModel: ScannerViewModel(permissionService: _MockDeniedPermissionService()),
+    ),
+  );
+}
+
+@Preview(name: 'SnackBar - Text', group: 'Screens')
+Widget scannerSnackbarTextPreview() {
+  return MaterialApp(
+    theme: buildLightTheme(),
+    home: Scaffold(
+      body: Builder(
+        builder: (context) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('Code QR scanné : Hello World'),
+                action: SnackBarAction(label: 'Fermer', onPressed: () {}),
+              ),
+            );
+          });
+          return const Center(child: Text('Prévisualisation SnackBar Texte'));
+        },
+      ),
+    ),
+  );
+}
+
+@Preview(name: 'SnackBar - URL', group: 'Screens')
+Widget scannerSnackbarUrlPreview() {
+  return MaterialApp(
+    theme: buildLightTheme(),
+    home: Scaffold(
+      body: Builder(
+        builder: (context) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('Code QR scanné : https://flutter.dev'),
+                action: SnackBarAction(label: 'Ouvrir le lien', onPressed: () {}),
+              ),
+            );
+          });
+          return const Center(child: Text('Prévisualisation SnackBar URL'));
+        },
+      ),
     ),
   );
 }

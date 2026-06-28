@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -8,6 +9,27 @@ import 'package:qr_scanner/viewmodels/scanner_viewmodel.dart';
 
 class MockPermissionService extends Mock implements PermissionService {}
 class MockMobileScannerController extends Mock implements MobileScannerController {}
+
+class FakeMobileScannerState extends Fake implements MobileScannerState {
+  @override
+  final bool isInitialized;
+  @override
+  final TorchState torchState;
+  @override
+  final MobileScannerException? error;
+  @override
+  final Size size;
+  
+  FakeMobileScannerState({
+    this.isInitialized = true, 
+    this.torchState = TorchState.off,
+    this.error,
+    this.size = Size.zero,
+  });
+  
+  @override
+  final DeviceOrientation deviceOrientation = DeviceOrientation.portraitUp;
+}
 
 void main() {
   late MockPermissionService mockPermissionService;
@@ -63,5 +85,68 @@ void main() {
     expect(find.byType(MobileScanner), findsOneWidget);
     expect(find.byType(CustomPaint), findsWidgets); // Contains ScannerOverlayPainter
     expect(find.text('Placez le code QR dans la zone de visée'), findsOneWidget);
+  });
+
+  testWidgets('ScannerScreen toggles torch when FAB is tapped', (tester) async {
+    when(() => mockPermissionService.hasCameraPermission()).thenAnswer((_) async => true);
+    when(() => mockController.value).thenReturn(FakeMobileScannerState(
+      isInitialized: true,
+      torchState: TorchState.off,
+    ));
+    when(() => mockController.toggleTorch()).thenAnswer((_) async {});
+    when(() => mockController.updateScanWindow(any())).thenAnswer((_) async {});
+    when(() => mockController.buildCameraView()).thenReturn(Container());
+    
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    
+    final fab = find.byType(FloatingActionButton);
+    expect(fab, findsOneWidget);
+    
+    await tester.tap(fab);
+    verify(() => mockController.toggleTorch()).called(1);
+  });
+
+  testWidgets('ScannerScreen shows SnackBar on detection', (tester) async {
+    when(() => mockPermissionService.hasCameraPermission()).thenAnswer((_) async => true);
+    
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    
+    final MobileScanner scanner = tester.widget(find.byType(MobileScanner));
+    final capture = BarcodeCapture(
+      barcodes: [Barcode(rawValue: 'Hello World')],
+    );
+    
+    scanner.onDetect?.call(capture);
+    await tester.pump(); // trigger frame for snackbar
+    
+    expect(find.text('Code QR scanné : Hello World'), findsOneWidget);
+    expect(find.text('Fermer'), findsOneWidget);
+    expect(find.text('Ouvrir le lien'), findsNothing);
+    
+    // Flush the debounce timer
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+  });
+
+  testWidgets('ScannerScreen shows SnackBar with URL detection', (tester) async {
+    when(() => mockPermissionService.hasCameraPermission()).thenAnswer((_) async => true);
+    
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    
+    final MobileScanner scanner = tester.widget(find.byType(MobileScanner));
+    final capture = BarcodeCapture(
+      barcodes: [Barcode(rawValue: 'https://flutter.dev')],
+    );
+    
+    scanner.onDetect?.call(capture);
+    await tester.pump(); // trigger frame for snackbar
+    
+    expect(find.text('Code QR scanné : https://flutter.dev'), findsOneWidget);
+    expect(find.text('Ouvrir le lien'), findsOneWidget);
+    
+    // Flush the debounce timer
+    await tester.pumpAndSettle(const Duration(seconds: 2));
   });
 }
