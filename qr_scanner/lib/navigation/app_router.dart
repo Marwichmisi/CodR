@@ -4,9 +4,13 @@ import 'package:go_router/go_router.dart';
 import '../screens/scanner_screen.dart';
 import '../screens/generator_screen.dart';
 import '../screens/history_screen.dart';
+import '../viewmodels/scanner_viewmodel.dart';
+import '../services/permission_service.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
-final GoRouter appRouter = GoRouter(
-  initialLocation: '/scanner', // D-07: always Scanner at launch
+GoRouter createAppRouter({PermissionService? permissionService, MobileScannerController? mockController}) {
+  return GoRouter(
+    initialLocation: '/scanner', // D-07: always Scanner at launch
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -17,7 +21,12 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/scanner',
-              builder: (context, state) => const ScannerScreen(),
+              builder: (context, state) => ScannerScreen(
+                viewModel: ScannerViewModel(
+                  permissionService: permissionService ?? SystemPermissionService(),
+                ),
+                mockController: mockController,
+              ),
             ),
           ],
         ),
@@ -41,6 +50,9 @@ final GoRouter appRouter = GoRouter(
     ),
   ],
 );
+}
+
+final GoRouter appRouter = createAppRouter();
 
 class ScaffoldWithNavBar extends StatelessWidget {
   const ScaffoldWithNavBar({required this.navigationShell, super.key});

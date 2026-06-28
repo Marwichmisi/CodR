@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:go_router/go_router.dart';
 import '../viewmodels/scanner_viewmodel.dart';
 import '../services/permission_service.dart';
 import '../theme/app_theme.dart';
@@ -25,6 +26,8 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
   late MobileScannerController _controller;
   bool _isControllerInitialized = false;
 
+  GoRouter? _router;
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +43,38 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    
+    // Subscribe to router changes for tab visibility
+    try {
+      final router = GoRouter.of(context);
+      if (_router != router) {
+        _router?.routerDelegate.removeListener(_onRouteChanged);
+        _router = router;
+        _router?.routerDelegate.addListener(_onRouteChanged);
+      }
+    } catch (_) {
+      // In tests, GoRouter might not be present in the tree
+    }
+  }
+
+  void _onRouteChanged() {
+    if (!mounted || !_isControllerInitialized || !widget.viewModel.hasPermission) return;
+    
+    final location = _router?.routerDelegate.currentConfiguration.uri.toString() ?? '';
+    final isActiveTab = location.startsWith('/scanner');
+    
+    if (isActiveTab) {
+      _controller.start();
+    } else {
+      _controller.stop();
+    }
+  }
+
+  @override
   void dispose() {
+    _router?.routerDelegate.removeListener(_onRouteChanged);
     WidgetsBinding.instance.removeObserver(this);
     // Libération des ressources de caméra
     _controller.dispose();
@@ -53,8 +87,12 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
 
     // Coupe la caméra si l'application passe en arrière-plan
     if (state == AppLifecycleState.resumed) {
-      _controller.start();
-    } else {
+      final location = _router?.routerDelegate.currentConfiguration.uri.toString() ?? '';
+      final isActiveTab = location.isEmpty || location.startsWith('/scanner');
+      if (isActiveTab) {
+        _controller.start();
+      }
+    } else if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
       _controller.stop();
     }
   }
@@ -83,20 +121,6 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
         return Scaffold(
           appBar: AppBar(
             title: const Text('Scanner'),
-            actions: [
-              ValueListenableBuilder(
-                valueListenable: _controller,
-                builder: (context, state, child) {
-                  final isTorchOn = state.torchState == TorchState.on;
-                  return IconButton(
-                    icon: Icon(isTorchOn ? Icons.flash_on : Icons.flash_off),
-                    color: isTorchOn ? Theme.of(context).colorScheme.primary : null,
-                    tooltip: isTorchOn ? 'Éteindre la lampe' : 'Allumer la lampe',
-                    onPressed: () => _controller.toggleTorch(),
-                  );
-                },
-              ),
-            ],
           ),
           body: LayoutBuilder(
             builder: (context, constraints) {
@@ -133,8 +157,30 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
                     child: CustomPaint(
                       painter: ScannerOverlayPainter(
                         scanWindow: scanWindow,
-                        cornerColor: Colors.blue, // Using a basic blue instead of seedColor directly
+                        cornerColor: Theme.of(context).colorScheme.primary,
                       ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 16,
+                    right: 16,
+                    child: ValueListenableBuilder(
+                      valueListenable: _controller,
+                      builder: (context, state, child) {
+                        final isTorchOn = state.torchState == TorchState.on;
+                        final isReady = state.isInitialized;
+                        return FloatingActionButton(
+                          mini: true,
+                          elevation: 2,
+                          backgroundColor: isTorchOn ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.surface,
+                          tooltip: isTorchOn ? 'Éteindre la lampe' : 'Allumer la lampe',
+                          onPressed: isReady ? () => _controller.toggleTorch() : null,
+                          child: Icon(
+                            isTorchOn ? Icons.flash_on : Icons.flash_off,
+                            color: isTorchOn ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onSurface,
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Positioned(
@@ -145,7 +191,7 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.6),
+                          color: Colors.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: const Text(
