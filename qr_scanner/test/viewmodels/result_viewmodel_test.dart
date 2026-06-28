@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:qr_scanner/models/content_type.dart';
 import 'package:qr_scanner/viewmodels/result_viewmodel.dart';
 
@@ -139,6 +138,69 @@ void main() {
 
     test('callPhone is callable', () async {
       expect(() => viewModel.callPhone('+33612345678'), returnsNormally);
+    });
+  });
+
+  group('Edge Cases (Backstops)', () {
+    test('R6: shareContent with empty content does not crash', () async {
+      // Backstop R6: Share button disabled if empty/error — no crash on empty
+      expect(() => viewModel.shareContent(''), returnsNormally);
+    });
+
+    test('R7: detectContentType called multiple times consecutively does not crash', () {
+      // Backstop R7: Repeated retry does not crash
+      for (var i = 0; i < 10; i++) {
+        viewModel.detectContentType('https://example.com/$i');
+      }
+      expect(viewModel.contentType, ContentType.url);
+      expect(viewModel.hasError, false);
+    });
+
+    test('R9: detectContentType with empty string does not throw exception', () {
+      // Backstop R9: ViewModel handles null/empty without exception
+      expect(() => viewModel.detectContentType(''), returnsNormally);
+      expect(viewModel.contentType, ContentType.empty);
+      expect(viewModel.hasError, true);
+    });
+
+    test('R9: detectContentType does not throw on any input', () {
+      // Verify no exception on various edge cases
+      expect(() => viewModel.detectContentType(''), returnsNormally);
+      expect(() => viewModel.detectContentType('   '), returnsNormally);
+      expect(() => viewModel.detectContentType('\n\t'), returnsNormally);
+      expect(() => viewModel.dispose(), returnsNormally);
+    });
+  });
+
+  group('Additional Content Detection', () {
+    test('detectContentType rejects data: scheme (D-05)', () {
+      viewModel.detectContentType('data:text/html,<h1>Hello</h1>');
+      expect(viewModel.contentType, ContentType.text);
+    });
+
+    test('detectContentType mixed email treated as text (D-08)', () {
+      viewModel.detectContentType('Contact: user@example.com');
+      expect(viewModel.contentType, ContentType.text);
+    });
+
+    test('detectContentType mixed phone treated as text (D-08)', () {
+      viewModel.detectContentType('Appelez le +33612345678');
+      expect(viewModel.contentType, ContentType.text);
+    });
+
+    test('hasError resets to false after valid content', () {
+      viewModel.detectContentType('');
+      expect(viewModel.hasError, true);
+
+      viewModel.detectContentType('https://flutter.dev');
+      expect(viewModel.hasError, false);
+      expect(viewModel.contentType, ContentType.url);
+    });
+
+    test('scannedContent stores raw content before trim', () {
+      viewModel.detectContentType('  https://flutter.dev  ');
+      expect(viewModel.scannedContent, '  https://flutter.dev  ');
+      expect(viewModel.contentType, ContentType.url);
     });
   });
 }
