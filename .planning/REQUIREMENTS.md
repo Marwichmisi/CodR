@@ -101,8 +101,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCAN-04 | Phase 2 | Complete |
 | SCAN-05 | Phase 2 | Complete |
 | SCAN-06 | Phase 2 | Complete |
-| SCAN-07 | Phase 3 | Pending |
-| SCAN-08 | Phase 3 | Pending |
+| SCAN-07 | Phase 3 | Complete |
+| SCAN-08 | Phase 3 | Complete |
 | GEN-01 | Phase 4 | Pending |
 | GEN-02 | Phase 4 | Pending |
 | GEN-03 | Phase 4 | Pending |
@@ -119,10 +119,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-03 | Phase 4 | Pending |
 | UI-04 | Phase 5 | Pending |
 | UI-05 | Phase 1 | Pending |
-| QUAL-01 | Phase 3 | Pending |
+| QUAL-01 | Phase 3 | Complete |
 | QUAL-02 | Phase 4 | Pending |
 | QUAL-03 | Phase 1 | Pending |
-| QUAL-04 | Phase 3 | Pending |
+| QUAL-04 | Phase 3 | Complete |
 
 **Coverage:**
 
