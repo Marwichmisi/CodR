@@ -1,9 +1,9 @@
 ---
-status: complete
+status: diagnosed
 phase: 01-foundation-navigation
 source: 01-01-SUMMARY.md, 01-02-SUMMARY.md, 01-03-SUMMARY.md
 started: 2026-06-27T12:00:00Z
-updated: 2026-06-27T12:15:00Z
+updated: 2026-06-27T12:20:00Z
 ---
 
 ## Current Test
@@ -38,9 +38,8 @@ result: pass
 
 ### 7. Tests unitaires et de widget
 expected: Au moins 28 tests doivent passer (thème, navigation, modèles, stockage, responsive)
-result: issue
-reported: "27/28 tests passent, 1 échoue - navigation_test.dart: tapping Generator tab shows Generator screen - erreur asset shaders/ink_sparkle.frag (problème de version de runtime shader Flutter)"
-severity: major
+result: pass
+note: "Initially 27/28 tests passed, 1 failed due to stale shader build artifact (ink_sparkle.frag). After flutter clean, all 28 tests pass."
 
 ### 8. Application démarre sans erreur
 expected: L'application doit démarrer sans erreur, le serveur SQLite doit s'initialiser correctement
@@ -49,8 +48,8 @@ result: pass
 ## Summary
 
 total: 8
-passed: 7
-issues: 1
+passed: 8
+issues: 0
 pending: 0
 skipped: 0
 blocked: 0
@@ -58,11 +57,11 @@ blocked: 0
 ## Gaps
 
 - truth: "Au moins 28 tests doivent passer"
-  status: failed
-  reason: "User reported: 27/28 tests passent, 1 échoue - navigation_test.dart: tapping Generator tab shows Generator screen - erreur asset shaders/ink_sparkle.frag (problème de version de runtime shader Flutter)"
+  status: resolved
+  reason: "Stale shader build artifact caused 1 test failure. After flutter clean, all 28 tests pass."
   severity: major
   test: 7
-  root_cause: ""
+  root_cause: "Stale ink_sparkle.frag shader in build directory with incompatible runtime stage data"
   artifacts: []
   missing: []
-  debug_session: ""
+  debug_session: ".planning/debug/shader-ink-sparkle.md"
