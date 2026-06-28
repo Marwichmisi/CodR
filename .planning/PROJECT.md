@@ -12,11 +12,10 @@ Scanner un QR code et obtenir le contenu instantanément, avec la possibilité d
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Scanner un QR code via caméra et afficher le contenu récupéré (Validated in Phase 02: camera-scanner)
 
 ### Active
 
-- [ ] Scanner un QR code via caméra et afficher le contenu récupéré
 - [ ] Détecter automatiquement les URLs et proposer de les ouvrir
 - [ ] Afficher le contenu du QR code avec des boutons d'action (ouvrir, copier, partager)
 - [ ] Générer un QR code à partir d'un champ texte (max 250 caractères)
@@ -80,4 +79,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-27 after initialization*
+*Last updated: 2026-06-28 after phase 02 completion*

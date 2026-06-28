@@ -17,12 +17,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Scan
 
-- [ ] **SCAN-01**: Scanner un QR code via caméra avec `mobile_scanner`
-- [ ] **SCAN-02**: Gérer les permissions caméra (iOS/Android)
-- [ ] **SCAN-03**: Afficher un overlay de guide de scan
-- [ ] **SCAN-04**: Toggle lampe/torche pour environments sombres
-- [ ] **SCAN-05**: Gérer le cycle de vie du contrôleur caméra (éviter écran noir)
-- [ ] **SCAN-06**: Empêcher les détections multiples du même QR code
+- [x] **SCAN-01**: Scanner un QR code via caméra avec `mobile_scanner`
+- [x] **SCAN-02**: Gérer les permissions caméra (iOS/Android)
+- [x] **SCAN-03**: Afficher un overlay de guide de scan
+- [x] **SCAN-04**: Toggle lampe/torche pour environments sombres
+- [x] **SCAN-05**: Gérer le cycle de vie du contrôleur caméra (éviter écran noir)
+- [x] **SCAN-06**: Empêcher les détections multiples du même QR code
 - [ ] **SCAN-07**: Détecter les URLs dans le contenu scanné
 - [ ] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
 
@@ -46,7 +46,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### UI/UX
 
 - [ ] **UI-01**: Interface Material 3 avec navigation intuitive (bottom nav ou tabs)
-- [ ] **UI-02**: Écran Scanner avec vue caméra et overlay
+- [x] **UI-02**: Écran Scanner avec vue caméra et overlay
 - [ ] **UI-03**: Écran Génération avec champ texte et prévisualisation QR
 - [ ] **UI-04**: Écran Historique avec liste et recherche
 - [ ] **UI-05**: Widget previews pour les composants UI (skills flutter-add-widget-preview)
@@ -95,12 +95,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-03 | Phase 1 | Pending |
 | INFRA-04 | Phase 1 | Pending |
 | INFRA-05 | Phase 1 | Pending |
-| SCAN-01 | Phase 2 | Pending |
-| SCAN-02 | Phase 2 | Pending |
-| SCAN-03 | Phase 2 | Pending |
-| SCAN-04 | Phase 2 | Pending |
-| SCAN-05 | Phase 2 | Pending |
-| SCAN-06 | Phase 2 | Pending |
+| SCAN-01 | Phase 2 | Complete |
+| SCAN-02 | Phase 2 | Complete |
+| SCAN-03 | Phase 2 | Complete |
+| SCAN-04 | Phase 2 | Complete |
+| SCAN-05 | Phase 2 | Complete |
+| SCAN-06 | Phase 2 | Complete |
 | SCAN-07 | Phase 3 | Pending |
 | SCAN-08 | Phase 3 | Pending |
 | GEN-01 | Phase 4 | Pending |
@@ -115,7 +115,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HIST-03 | Phase 5 | Pending |
 | HIST-04 | Phase 5 | Pending |
 | UI-01 | Phase 1 | Pending |
-| UI-02 | Phase 2 | Pending |
+| UI-02 | Phase 2 | Complete |
 | UI-03 | Phase 4 | Pending |
 | UI-04 | Phase 5 | Pending |
 | UI-05 | Phase 1 | Pending |
@@ -125,6 +125,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | QUAL-04 | Phase 3 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 33 total
 - Mapped to phases: 33
 - Unmapped: 0 ✓
