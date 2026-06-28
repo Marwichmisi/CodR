@@ -87,8 +87,8 @@ Plans:
 
 Plans:
 
-- [ ] 03-01: URL detection and content display with action buttons (share_plus, clipboard)
-- [ ] 03-02: Error handling, loading states, and unit tests for ViewModels
+- [ ] 03-01-PLAN.md — ContentType model, ResultViewModel, bottom sheet et intégration ScannerScreen
+- [ ] 03-02-PLAN.md — Tests unitaires/widget, gestion d'erreur et validation cycle de vie caméra
 
 ### Phase 4: QR Generation
 

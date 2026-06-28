@@ -23,8 +23,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SCAN-04**: Toggle lampe/torche pour environments sombres
 - [x] **SCAN-05**: Gérer le cycle de vie du contrôleur caméra (éviter écran noir)
 - [x] **SCAN-06**: Empêcher les détections multiples du même QR code
-- [ ] **SCAN-07**: Détecter les URLs dans le contenu scanné
-- [ ] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
+- [~] **SCAN-07**: Détecter les URLs dans le contenu scanné
+- [~] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
 
 ### Génération
 
@@ -53,10 +53,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Qualité
 
-- [ ] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
+- [~] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
 - [ ] **QUAL-02**: Tests de widgets pour les écrans principaux (skills flutter-add-widget-test)
 - [ ] **QUAL-03**: Layout responsive (skills flutter-build-responsive-layout)
-- [ ] **QUAL-04**: Gestion correcte des erreurs et états de chargement
+- [~] **QUAL-04**: Gestion correcte des erreurs et états de chargement
 
 ## v2 Requirements
 
