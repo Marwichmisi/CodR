@@ -6,7 +6,7 @@ Build a Flutter mobile app that scans QR codes via camera and generates QR codes
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Navigation** - Project scaffolded with MVVM, Material 3 theme, navigation, and SQLite storage
+- [x] **Phase 1: Foundation & Navigation** - Project scaffolded with MVVM, Material 3 theme, navigation, and SQLite storage
 - [ ] **Phase 2: Camera Scanner** - QR scanning via camera with permissions, overlay, torch, and lifecycle management
 - [ ] **Phase 3: Scan Results & Content Display** - Scanned content shown with URL detection, action buttons, and error handling
 - [ ] **Phase 4: QR Generation** - Generate QR codes from text input with save, share, and copy capabilities
@@ -27,20 +27,24 @@ Build a Flutter mobile app that scans QR codes via camera and generates QR codes
   4. Data models (ScanRecord, GenerationRecord) are defined and SQLite database initializes correctly
   5. Layout adapts responsively to different screen sizes (phone and tablet)
 
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
 **Wave 1**
 
-- [ ] 01-01: Project setup with MVVM architecture and Material 3 theme (flutter-apply-architecture-best-practices, flutter-setup-localization)
+- [x] 01-01: Project setup with MVVM architecture and Material 3 theme (flutter-apply-architecture-best-practices, flutter-setup-localization)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02: Navigation shell with bottom nav and data models (flutter-setup-declarative-routing)
+- [x] 01-02: Navigation shell with bottom nav and data models (flutter-setup-declarative-routing)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03: SQLite storage service and responsive layout foundation (flutter-build-responsive-layout)
+- [x] 01-03: SQLite storage service and responsive layout foundation (flutter-build-responsive-layout)
+
+**Wave 4** *(gap closure)*
+
+- [x] 01-04: Clean stale shader artifacts to fix test failure
 
 ### Phase 2: Camera Scanner
 
@@ -126,7 +130,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Navigation | 0/3 | Not started | - |
+| 1. Foundation & Navigation | 4/4 | ✓ Complete | 2026-06-28 |
 | 2. Camera Scanner | 0/3 | Not started | - |
 | 3. Scan Results & Content Display | 0/2 | Not started | - |
 | 4. QR Generation | 0/3 | Not started | - |
