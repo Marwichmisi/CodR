@@ -7,7 +7,7 @@ Build a Flutter mobile app that scans QR codes via camera and generates QR codes
 ## Phases
 
 - [x] **Phase 1: Foundation & Navigation** - Project scaffolded with MVVM, Material 3 theme, navigation, and SQLite storage
-- [ ] **Phase 2: Camera Scanner** - QR scanning via camera with permissions, overlay, torch, and lifecycle management
+- [x] **Phase 2: Camera Scanner** - QR scanning via camera with permissions, overlay, torch, and lifecycle management (completed 2026-06-28)
 - [ ] **Phase 3: Scan Results & Content Display** - Scanned content shown with URL detection, action buttons, and error handling
 - [ ] **Phase 4: QR Generation** - Generate QR codes from text input with save, share, and copy capabilities
 - [ ] **Phase 5: History & Data Persistence** - Scan/generation history stored in SQLite with search, filter, and delete
@@ -59,17 +59,17 @@ Plans:
   4. Camera lifecycle is handled correctly — no black screen when returning from other screens
   5. Duplicate scan detections are prevented (single QR triggers one result, not 5-20)
 
-**Plans**: 2/3 plans executed
+**Plans**: 3/3 plans complete
 
 Plans:
 
 - [x] 02-01-PLAN.md
-- [ ] 02-02-PLAN.md
+- [x] 02-02-PLAN.md
 - [x] 02-03-PLAN.md
 
 - [x] 02-01: Intégration caméra, permissions et overlay (mobile_scanner, permission_handler)
-- [ ] 02-02: Contrôle de la torche et cycle de vie (WidgetsBindingObserver)
-- [ ] 02-03: Anti-rebond/dédoublonnage et SnackBar (HapticFeedback, SnackBar)
+- [x] 02-02: Contrôle de la torche et cycle de vie (WidgetsBindingObserver)
+- [x] 02-03: Anti-rebond/dédoublonnage et SnackBar (HapticFeedback, SnackBar)
 
 ### Phase 3: Scan Results & Content Display
 
@@ -135,7 +135,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Navigation | 4/4 | ✓ Complete | 2026-06-28 |
-| 2. Camera Scanner | 2/3 | In Progress|  |
+| 2. Camera Scanner | 3/3 | Complete    | 2026-06-28 |
 | 3. Scan Results & Content Display | 0/2 | Not started | - |
 | 4. QR Generation | 0/3 | Not started | - |
 | 5. History & Data Persistence | 0/2 | Not started | - |

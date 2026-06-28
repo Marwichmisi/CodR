@@ -22,13 +22,19 @@ requirements-completed:
 duration: 5 min
 completed: 2026-06-28T12:12:00Z
 coverage:
-  - kind: verification
-    ref: tests/viewmodels/scanner_viewmodel_test.dart
-    status: pass
+  - id: D1
+    description: "Anti-rebond de 2s bloquant les scans multiples avec vibration haptique"
+    verification:
+      - kind: unit
+        ref: tests/viewmodels/scanner_viewmodel_test.dart
+        status: pass
     human_judgment: false
-  - kind: verification
-    ref: tests/screens/scanner_screen_test.dart
-    status: pass
+  - id: D2
+    description: "Affichage du texte scanné dans une SnackBar réactive avec détection d'URL"
+    verification:
+      - kind: automated_ui
+        ref: tests/screens/scanner_screen_test.dart
+        status: pass
     human_judgment: false
 ---
 
