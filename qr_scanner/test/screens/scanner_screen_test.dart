@@ -6,6 +6,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_scanner/screens/scanner_screen.dart';
 import 'package:qr_scanner/services/permission_service.dart';
 import 'package:qr_scanner/viewmodels/scanner_viewmodel.dart';
+import 'package:qr_scanner/viewmodels/result_viewmodel.dart';
 
 class MockPermissionService extends Mock implements PermissionService {}
 class MockMobileScannerController extends Mock implements MobileScannerController {}
@@ -54,6 +55,7 @@ void main() {
     return MaterialApp(
       home: ScannerScreen(
         viewModel: viewModel,
+        resultViewModel: ResultViewModel(),
         mockController: mockController,
       ),
     );
@@ -107,7 +109,7 @@ void main() {
     verify(() => mockController.toggleTorch()).called(1);
   });
 
-  testWidgets('ScannerScreen shows SnackBar on detection', (tester) async {
+  testWidgets('ScannerScreen shows bottom sheet on text detection', (tester) async {
     when(() => mockPermissionService.hasCameraPermission()).thenAnswer((_) async => true);
     
     await tester.pumpWidget(buildApp());
@@ -119,17 +121,21 @@ void main() {
     );
     
     scanner.onDetect?.call(capture);
-    await tester.pump(); // trigger frame for snackbar
+    await tester.pump(); // trigger frame for bottom sheet
+    await tester.pumpAndSettle(); // wait for bottom sheet animation
     
-    expect(find.text('Code QR scanné : Hello World'), findsOneWidget);
-    expect(find.text('Fermer'), findsOneWidget);
+    // Bottom sheet shows the content and Copy/Share buttons for text
+    expect(find.text('Hello World'), findsOneWidget);
+    expect(find.text('Copier le texte'), findsOneWidget);
+    expect(find.text('Partager le contenu'), findsOneWidget);
+    // No contextual button for plain text
     expect(find.text('Ouvrir le lien'), findsNothing);
     
     // Flush the debounce timer
     await tester.pumpAndSettle(const Duration(seconds: 2));
   });
 
-  testWidgets('ScannerScreen shows SnackBar with URL detection', (tester) async {
+  testWidgets('ScannerScreen shows bottom sheet with URL action', (tester) async {
     when(() => mockPermissionService.hasCameraPermission()).thenAnswer((_) async => true);
     
     await tester.pumpWidget(buildApp());
@@ -141,10 +147,14 @@ void main() {
     );
     
     scanner.onDetect?.call(capture);
-    await tester.pump(); // trigger frame for snackbar
+    await tester.pump(); // trigger frame for bottom sheet
+    await tester.pumpAndSettle(); // wait for bottom sheet animation
     
-    expect(find.text('Code QR scanné : https://flutter.dev'), findsOneWidget);
+    // Bottom sheet shows URL content and contextual "Open" button
+    expect(find.text('https://flutter.dev'), findsOneWidget);
     expect(find.text('Ouvrir le lien'), findsOneWidget);
+    expect(find.text('Copier le texte'), findsOneWidget);
+    expect(find.text('Partager le contenu'), findsOneWidget);
     
     // Flush the debounce timer
     await tester.pumpAndSettle(const Duration(seconds: 2));

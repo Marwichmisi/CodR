@@ -23,8 +23,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SCAN-04**: Toggle lampe/torche pour environments sombres
 - [x] **SCAN-05**: Gérer le cycle de vie du contrôleur caméra (éviter écran noir)
 - [x] **SCAN-06**: Empêcher les détections multiples du même QR code
-- [ ] **SCAN-07**: Détecter les URLs dans le contenu scanné
-- [ ] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
+- [~] **SCAN-07**: Détecter les URLs dans le contenu scanné
+- [~] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
 
 ### Génération
 
@@ -53,10 +53,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Qualité
 
-- [ ] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
+- [~] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
 - [x] **QUAL-02**: Tests de widgets pour les écrans principaux (skills flutter-add-widget-test)
 - [ ] **QUAL-03**: Layout responsive (skills flutter-build-responsive-layout)
-- [ ] **QUAL-04**: Gestion correcte des erreurs et états de chargement
+- [~] **QUAL-04**: Gestion correcte des erreurs et états de chargement
 
 ## v2 Requirements
 
@@ -101,8 +101,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCAN-04 | Phase 2 | Complete |
 | SCAN-05 | Phase 2 | Complete |
 | SCAN-06 | Phase 2 | Complete |
-| SCAN-07 | Phase 3 | Pending |
-| SCAN-08 | Phase 3 | Pending |
+| SCAN-07 | Phase 3 | Complete |
+| SCAN-08 | Phase 3 | Complete |
 | GEN-01 | Phase 4 | Complete |
 | GEN-02 | Phase 4 | Complete |
 | GEN-03 | Phase 4 | Complete |
@@ -119,10 +119,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-03 | Phase 4 | Complete |
 | UI-04 | Phase 5 | Pending |
 | UI-05 | Phase 1 | Pending |
-| QUAL-01 | Phase 3 | Pending |
+| QUAL-01 | Phase 3 | Complete |
 | QUAL-02 | Phase 4 | Complete |
 | QUAL-03 | Phase 1 | Pending |
-| QUAL-04 | Phase 3 | Pending |
+| QUAL-04 | Phase 3 | Complete |
 
 **Coverage:**
 
@@ -132,4 +132,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-06-27*
-*Last updated: 2026-06-27 after initial definition*
+*Last updated: 2026-06-29 after phase 04 completion*

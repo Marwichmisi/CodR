@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 5
 current_phase_name: History & Data Persistence
 status: Phase 04 shipped — PR #4
-stopped_at: Phase 04 UI-SPEC approved
-last_updated: "2026-06-29T07:14:38.934Z"
+stopped_at: Phase 04 shipped
+last_updated: "2026-06-29T15:00:00.000Z"
 last_activity: 2026-06-29
 last_activity_desc: Phase 04 shipped — PR #4
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 9
-  completed_plans: 10
+  completed_plans: 11
   percent: 60
 ---
 
@@ -21,39 +21,41 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-06-27)
+See: .planning/PROJECT.md (updated 2026-06-29)
 
 **Core value:** Scanner un QR code et obtenir le contenu instantanément, avec la possibilité de le partager ou d'agir dessus.
-**Current focus:** Phase 04 — qr-generation
+**Current focus:** Phase 05 — History & Data Persistence
 
 ## Current Position
 
 Phase: 5 — History & Data Persistence
 Plan: Not started
-Status: Phase 04 complete
-Last activity: 2026-06-29 — Phase 04 complete, transitioned to Phase 5
+Status: Phase 04 shipped — PR #4
+Last activity: 2026-06-29 — Phase 04 shipped
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [████████░░] 60%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 5
-- Average duration: -
-- Total execution time: 0 hours
+- Total plans completed: 11
+- Average duration: 8 min
+- Total execution time: 1.2 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
+| 01 | 4 | - | - |
 | 02 | 3 | - | - |
+| 03 | 2 | - | - |
 | 04 | 3 | - | - |
 
 **Recent Trend:**
 
-- Last 5 plans: -
-- Trend: -
+- Last 5 plans: 13 min, 3 min, -
+- Trend: Accelerating
 
 *Updated after each plan completion*
 | Phase 02 P03 | 5 min | 2 tasks | 2 files |
@@ -89,5 +91,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-06-29
-Stopped at: Phase 04 gap closure plan 04-03 completed
+Stopped at: Phase 04 shipped — PR #4
 Resume file: .planning/phases/04-qr-generation/04-03-SUMMARY.md

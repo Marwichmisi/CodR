@@ -5,6 +5,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_scanner/screens/scanner_screen.dart';
 import 'package:qr_scanner/services/permission_service.dart';
 import 'package:qr_scanner/viewmodels/scanner_viewmodel.dart';
+import 'package:qr_scanner/viewmodels/result_viewmodel.dart';
 import 'package:go_router/go_router.dart';
 
 class MockPermissionService extends Mock implements PermissionService {}
@@ -61,6 +62,7 @@ void main() {
                   path: '/scanner',
                   builder: (context, state) => ScannerScreen(
                     viewModel: viewModel,
+                    resultViewModel: ResultViewModel(),
                     mockController: mockController,
                   ),
                 ),
