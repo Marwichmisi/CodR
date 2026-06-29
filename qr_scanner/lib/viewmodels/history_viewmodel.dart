@@ -23,6 +23,9 @@ class HistoryViewModel extends ChangeNotifier {
   RecordType? _selectedType;
   RecordType? get selectedType => _selectedType;
 
+  String _searchQuery = '';
+  String get searchQuery => _searchQuery;
+
   /// Loads all records from storage.
   Future<void> loadRecords() async {
     _isLoading = true;
@@ -51,9 +54,27 @@ class HistoryViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Returns filtered records based on selected type.
+  /// Sets the search query and triggers listener notification.
+  void setSearchQuery(String query) {
+    _searchQuery = query;
+    notifyListeners();
+  }
+
+  /// Returns filtered records based on selected type and search query.
   List<RecordBase> get filteredRecords {
-    if (_selectedType == null) return _allRecords;
-    return _allRecords.where((r) => r.type == _selectedType!.name).toList();
+    var records = _allRecords;
+
+    // Apply type filter
+    if (_selectedType != null) {
+      records = records.where((r) => r.type == _selectedType!.name).toList();
+    }
+
+    // Apply search filter (case-insensitive substring match)
+    if (_searchQuery.isNotEmpty) {
+      final lowerQuery = _searchQuery.toLowerCase();
+      records = records.where((r) => r.content.toLowerCase().contains(lowerQuery)).toList();
+    }
+
+    return records;
   }
 }
