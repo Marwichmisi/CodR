@@ -1,7 +1,13 @@
-class ScanRecord {
+import 'record_base.dart';
+
+class ScanRecord extends RecordBase {
+  @override
   final int id;
+  @override
   final String content;
+  @override
   final DateTime timestamp;
+  @override
   final String type; // 'scan' or 'generation'
 
   const ScanRecord({

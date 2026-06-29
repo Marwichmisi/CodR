@@ -1,11 +1,15 @@
 import 'package:flutter/foundation.dart';
 import '../services/permission_service.dart';
+import '../services/storage_service.dart';
+import '../models/scan_record.dart';
 
 class ScannerViewModel extends ChangeNotifier {
   final PermissionService _permissionService;
+  final StorageService? _storageService;
 
-  ScannerViewModel({required PermissionService permissionService})
-      : _permissionService = permissionService;
+  ScannerViewModel({required PermissionService permissionService, StorageService? storageService})
+      : _permissionService = permissionService,
+        _storageService = storageService;
 
   bool _isCheckingPermission = true;
   bool get isCheckingPermission => _isCheckingPermission;
@@ -58,5 +62,17 @@ class ScannerViewModel extends ChangeNotifier {
     });
 
     return true;
+  }
+
+  /// Saves a scan record to the database after user action.
+  Future<void> saveScanRecord(String content) async {
+    if (_storageService == null) return;
+    final record = ScanRecord(
+      id: 0,
+      content: content,
+      timestamp: DateTime.now(),
+      type: 'scan',
+    );
+    await _storageService.insertScanRecord(record);
   }
 }

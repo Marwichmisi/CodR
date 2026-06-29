@@ -1,7 +1,13 @@
-class GenerationRecord {
+import 'record_base.dart';
+
+class GenerationRecord extends RecordBase {
+  @override
   final int id;
+  @override
   final String content;
+  @override
   final DateTime timestamp;
+  @override
   final String type; // 'scan' or 'generation'
 
   const GenerationRecord({

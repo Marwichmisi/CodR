@@ -7,10 +7,12 @@ import '../screens/history_screen.dart';
 import '../viewmodels/scanner_viewmodel.dart';
 import '../viewmodels/generator_viewmodel.dart';
 import '../viewmodels/result_viewmodel.dart';
+import '../viewmodels/history_viewmodel.dart';
 import '../services/permission_service.dart';
+import '../services/storage_service.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-GoRouter createAppRouter({PermissionService? permissionService, MobileScannerController? mockController}) {
+GoRouter createAppRouter({PermissionService? permissionService, StorageService? storageService, MobileScannerController? mockController}) {
   return GoRouter(
     initialLocation: '/scanner', // D-07: always Scanner at launch
   routes: [
@@ -26,6 +28,7 @@ GoRouter createAppRouter({PermissionService? permissionService, MobileScannerCon
               builder: (context, state) => ScannerScreen(
                 viewModel: ScannerViewModel(
                   permissionService: permissionService ?? SystemPermissionService(),
+                  storageService: storageService,
                 ),
                 resultViewModel: ResultViewModel(),
                 mockController: mockController,
@@ -40,6 +43,7 @@ GoRouter createAppRouter({PermissionService? permissionService, MobileScannerCon
               builder: (context, state) => GeneratorScreen(
                 viewModel: GeneratorViewModel(
                   permissionService: permissionService ?? SystemPermissionService(),
+                  storageService: storageService,
                 ),
               ),
             ),
@@ -49,7 +53,11 @@ GoRouter createAppRouter({PermissionService? permissionService, MobileScannerCon
           routes: [
             GoRoute(
               path: '/history',
-              builder: (context, state) => const HistoryScreen(),
+              builder: (context, state) => HistoryScreen(
+                viewModel: HistoryViewModel(
+                  storageService: storageService ?? StorageService(),
+                ),
+              ),
             ),
           ],
         ),
@@ -58,9 +66,6 @@ GoRouter createAppRouter({PermissionService? permissionService, MobileScannerCon
   ],
 );
 }
-
-final GoRouter appRouter = createAppRouter();
-
 class ScaffoldWithNavBar extends StatelessWidget {
   const ScaffoldWithNavBar({required this.navigationShell, super.key});
 

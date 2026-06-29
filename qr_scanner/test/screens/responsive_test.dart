@@ -9,12 +9,15 @@ import 'package:qr_scanner/theme/app_theme.dart';
 import 'package:qr_scanner/viewmodels/scanner_viewmodel.dart';
 import 'package:qr_scanner/viewmodels/generator_viewmodel.dart';
 import 'package:qr_scanner/viewmodels/result_viewmodel.dart';
+import 'package:qr_scanner/viewmodels/history_viewmodel.dart';
 import 'package:qr_scanner/services/permission_service.dart';
+import 'package:qr_scanner/services/storage_service.dart';
 
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class MockPermissionService extends Mock implements PermissionService {}
 class MockMobileScannerController extends Mock implements MobileScannerController {}
+class MockStorageService extends Mock implements StorageService {}
 
 class FakeMobileScannerState extends Fake implements MobileScannerState {
   @override
@@ -127,9 +130,14 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.resetPhysicalSize);
 
+      final mockStorageService = MockStorageService();
+      when(() => mockStorageService.getHistory()).thenAnswer((_) async => []);
+
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: const HistoryScreen(),
+        home: HistoryScreen(
+          viewModel: HistoryViewModel(storageService: mockStorageService),
+        ),
       ));
       expect(tester.takeException(), isNull);
     });
@@ -154,9 +162,14 @@ void main() {
       ));
       expect(find.byType(LayoutBuilder), findsWidgets);
 
+      final mockStorageService = MockStorageService();
+      when(() => mockStorageService.getHistory()).thenAnswer((_) async => []);
+
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: const HistoryScreen(),
+        home: HistoryScreen(
+          viewModel: HistoryViewModel(storageService: mockStorageService),
+        ),
       ));
       expect(find.byType(LayoutBuilder), findsWidgets);
     });

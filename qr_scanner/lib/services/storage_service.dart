@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 
 import '../models/scan_record.dart';
 import '../models/generation_record.dart';
+import '../models/record_base.dart';
 
 class StorageService {
   static Database? _database;
@@ -82,10 +83,14 @@ class StorageService {
 
   Future<void> insertScanRecord(ScanRecord record) async {
     await insertRecord('scan_records', record.toJson());
+    final db = await database;
+    await _enforceFifoLimit(db, 'scan_records');
   }
 
   Future<void> insertGenerationRecord(GenerationRecord record) async {
     await insertRecord('generation_records', record.toJson());
+    final db = await database;
+    await _enforceFifoLimit(db, 'generation_records');
   }
 
   Future<List<ScanRecord>> getAllScanRecords() async {
@@ -96,5 +101,26 @@ class StorageService {
   Future<List<GenerationRecord>> getAllGenerationRecords() async {
     final rows = await getAll('generation_records');
     return rows.map((row) => GenerationRecord.fromJson(row)).toList();
+  }
+
+  /// Returns merged list of all records (scan + generation) sorted by timestamp DESC.
+  Future<List<RecordBase>> getHistory() async {
+    final scans = await getAllScanRecords();
+    final generations = await getAllGenerationRecords();
+    final allRecords = <RecordBase>[...scans, ...generations];
+    allRecords.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+    return allRecords;
+  }
+
+  /// Enforces FIFO limit per table. Called after each insert.
+  Future<void> _enforceFifoLimit(Database db, String table, {int maxRecords = 100}) async {
+    final countResult = await db.rawQuery('SELECT COUNT(*) as count FROM $table');
+    final count = countResult.first['count'] as int;
+    if (count > maxRecords) {
+      final excess = count - maxRecords;
+      await db.rawDelete(
+        'DELETE FROM $table WHERE id IN (SELECT id FROM $table ORDER BY timestamp ASC LIMIT $excess)',
+      );
+    }
   }
 }

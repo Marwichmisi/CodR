@@ -18,6 +18,7 @@ void main() {
     when(() => mockViewModel.isUrlDetected).thenReturn(false);
     when(() => mockViewModel.addListener(any())).thenAnswer((_) {});
     when(() => mockViewModel.removeListener(any())).thenAnswer((_) {});
+    when(() => mockViewModel.saveGenerationRecord()).thenAnswer((_) async {});
   });
 
   Widget buildApp() {
