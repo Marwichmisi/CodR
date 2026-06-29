@@ -4,11 +4,11 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 5
 current_phase_name: History & Data Persistence
-status: completed
+status: Phase 04 shipped — PR #4
 stopped_at: Phase 04 UI-SPEC approved
 last_updated: "2026-06-29T07:14:38.934Z"
 last_activity: 2026-06-29
-last_activity_desc: Phase 04 gap closure plan 04-03 completed
+last_activity_desc: Phase 04 shipped — PR #4
 progress:
   total_phases: 5
   completed_phases: 3
