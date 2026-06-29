@@ -1,20 +1,20 @@
 ---
 gsd_state_version: 1.0
 milestone: v1.0
-milestone_name: milestone
-current_phase: 05
-status: Phase 05 shipped — PR #6
-stopped_at: Phase 05 UI-SPEC approved
-last_updated: "2026-06-29T20:00:00.000Z"
+milestone_name: MVP
+current_phase: complete
+status: v1.0 MVP shipped
+stopped_at: Milestone v1.0 complete
+last_updated: "2026-06-29T21:00:00.000Z"
 last_activity: 2026-06-29
-last_activity_desc: Phase 05 shipped — PR #6
+last_activity_desc: v1.0 MVP milestone completed and archived
 progress:
   total_phases: 5
   completed_phases: 5
   total_plans: 14
   completed_plans: 14
   percent: 100
-current_phase_name: History & Data Persistence
+current_phase_name: (milestone complete)
 ---
 
 # Project State
@@ -24,16 +24,16 @@ current_phase_name: History & Data Persistence
 See: .planning/PROJECT.md (updated 2026-06-29)
 
 **Core value:** Scanner un QR code et obtenir le contenu instantanément, avec la possibilité de le partager ou d'agir dessus.
-**Current focus:** Phase 05 — History & Data Persistence
+**Current focus:** Planning next milestone (v1.1)
 
 ## Current Position
 
-Phase: 05
-Plan: Not started
-Status: Phase 05 complete
-Last activity: 2026-06-29 — Phase 05 complete
+Phase: Complete
+Plan: N/A
+Status: v1.0 MVP shipped
+Last activity: 2026-06-29 — v1.0 milestone completed
 
-Progress: [████████░░] 60%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -53,14 +53,7 @@ Progress: [████████░░] 60%
 | 04 | 3 | - | - |
 | 05 | 2 | - | - |
 
-**Recent Trend:**
-
-- Last 5 plans: 13 min, 3 min, -
-- Trend: Accelerating
-
 *Updated after each plan completion*
-| Phase 02 P03 | 5 min | 2 tasks | 2 files |
-| Phase 04 P03 | 4 min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -83,14 +76,14 @@ None yet.
 
 ## Deferred Items
 
-Items acknowledged and carried forward from previous milestone close:
+Items acknowledged and deferred at milestone close on 2026-06-29:
 
-| Category | Item | Status | Deferred At |
-|----------|------|--------|-------------|
-| *(none)* | | | |
+| Category | Item | Status |
+|----------|------|--------|
+| *(none)* | | |
 
 ## Session Continuity
 
-Last session: 2026-06-29T15:02:58.987Z
-Stopped at: Phase 05 UI-SPEC approved
-Resume file: .planning/phases/05-history-data-persistence/05-UI-SPEC.md
+Last session: 2026-06-29T21:00:00.000Z
+Stopped at: v1.0 milestone complete
+Resume file: .planning/MILESTONES.md
