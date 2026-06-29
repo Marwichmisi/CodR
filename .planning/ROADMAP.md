@@ -127,8 +127,8 @@ Plans:
 
 Plans:
 
-- [ ] 05-01: SQLite history storage integration and history list view
-- [ ] 05-02: Search/filter functionality and delete with confirmation
+- [ ] 05-01-PLAN.md — RecordBase abstraction, StorageService integration, ScannerViewModel/GeneratorViewModel persistence, HistoryViewModel, HistoryScreen rebuild
+- [ ] 05-02-PLAN.md — Search bar, type filter chips, swipe-to-delete with confirmation dialog
 
 ## Progress
 
