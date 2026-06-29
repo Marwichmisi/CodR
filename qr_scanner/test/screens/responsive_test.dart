@@ -7,6 +7,7 @@ import 'package:qr_scanner/screens/generator_screen.dart';
 import 'package:qr_scanner/screens/history_screen.dart';
 import 'package:qr_scanner/theme/app_theme.dart';
 import 'package:qr_scanner/viewmodels/scanner_viewmodel.dart';
+import 'package:qr_scanner/viewmodels/generator_viewmodel.dart';
 import 'package:qr_scanner/services/permission_service.dart';
 
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -112,7 +113,9 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: const GeneratorScreen(),
+        home: GeneratorScreen(
+          viewModel: GeneratorViewModel(permissionService: MockPermissionService()),
+        ),
       ));
       expect(tester.takeException(), isNull);
     });
@@ -144,7 +147,9 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(
         theme: buildLightTheme(),
-        home: const GeneratorScreen(),
+        home: GeneratorScreen(
+          viewModel: GeneratorViewModel(permissionService: MockPermissionService()),
+        ),
       ));
       expect(find.byType(LayoutBuilder), findsWidgets);
 
