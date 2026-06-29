@@ -114,7 +114,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               label: const Text('Tout'),
                               selected: widget.viewModel.selectedType == null,
                               onSelected: (_) => widget.viewModel.setFilter(null),
-                              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                              selectedColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
                               checkmarkColor: Theme.of(context).colorScheme.primary,
                               side: BorderSide(
                                 color: widget.viewModel.selectedType == null
@@ -126,7 +126,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               label: const Text('Scans'),
                               selected: widget.viewModel.selectedType == RecordType.scan,
                               onSelected: (_) => widget.viewModel.setFilter(RecordType.scan),
-                              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                              selectedColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
                               checkmarkColor: Theme.of(context).colorScheme.primary,
                               side: BorderSide(
                                 color: widget.viewModel.selectedType == RecordType.scan
@@ -138,7 +138,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               label: const Text('Générations'),
                               selected: widget.viewModel.selectedType == RecordType.generation,
                               onSelected: (_) => widget.viewModel.setFilter(RecordType.generation),
-                              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                              selectedColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
                               checkmarkColor: Theme.of(context).colorScheme.primary,
                               side: BorderSide(
                                 color: widget.viewModel.selectedType == RecordType.generation
