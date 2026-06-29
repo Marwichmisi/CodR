@@ -9,11 +9,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: Initialiser le projet Flutter avec structure MVVM (skills flutter-apply-architecture-best-practices)
-- [ ] **INFRA-02**: Configurer le thème Material 3 (couleurs, typography)
-- [ ] **INFRA-03**: Mettre en place la navigation entre les écrans (skills flutter-setup-declarative-routing)
-- [ ] **INFRA-04**: Créer les modèles de données (ScanRecord, GenerationRecord)
-- [ ] **INFRA-05**: Mettre en place le service de stockage SQLite (sqflite)
+- [x] **INFRA-01**: Initialiser le projet Flutter avec structure MVVM (skills flutter-apply-architecture-best-practices)
+- [x] **INFRA-02**: Configurer le thème Material 3 (couleurs, typography)
+- [x] **INFRA-03**: Mettre en place la navigation entre les écrans (skills flutter-setup-declarative-routing)
+- [x] **INFRA-04**: Créer les modèles de données (ScanRecord, GenerationRecord)
+- [x] **INFRA-05**: Mettre en place le service de stockage SQLite (sqflite)
 
 ### Scan
 
@@ -23,8 +23,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **SCAN-04**: Toggle lampe/torche pour environments sombres
 - [x] **SCAN-05**: Gérer le cycle de vie du contrôleur caméra (éviter écran noir)
 - [x] **SCAN-06**: Empêcher les détections multiples du même QR code
-- [~] **SCAN-07**: Détecter les URLs dans le contenu scanné
-- [~] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
+- [x] **SCAN-07**: Détecter les URLs dans le contenu scanné
+- [x] **SCAN-08**: Afficher le contenu du QR avec actions (ouvrir URL, copier, partager)
 
 ### Génération
 
@@ -45,18 +45,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### UI/UX
 
-- [ ] **UI-01**: Interface Material 3 avec navigation intuitive (bottom nav ou tabs)
+- [x] **UI-01**: Interface Material 3 avec navigation intuitive (bottom nav ou tabs)
 - [x] **UI-02**: Écran Scanner avec vue caméra et overlay
 - [x] **UI-03**: Écran Génération avec champ texte et prévisualisation QR
 - [x] **UI-04**: Écran Historique avec liste et recherche
-- [ ] **UI-05**: Widget previews pour les composants UI (skills flutter-add-widget-preview)
+- [x] **UI-05**: Widget previews pour les composants UI (skills flutter-add-widget-preview)
 
 ### Qualité
 
-- [~] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
+- [x] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
 - [x] **QUAL-02**: Tests de widgets pour les écrans principaux (skills flutter-add-widget-test)
-- [ ] **QUAL-03**: Layout responsive (skills flutter-build-responsive-layout)
-- [~] **QUAL-04**: Gestion correcte des erreurs et états de chargement
+- [x] **QUAL-03**: Layout responsive (skills flutter-build-responsive-layout)
+- [x] **QUAL-04**: Gestion correcte des erreurs et états de chargement
 
 ## v2 Requirements
 
@@ -90,11 +90,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
+| INFRA-05 | Phase 1 | Complete |
 | SCAN-01 | Phase 2 | Complete |
 | SCAN-02 | Phase 2 | Complete |
 | SCAN-03 | Phase 2 | Complete |
@@ -114,14 +114,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HIST-02 | Phase 5 | Complete |
 | HIST-03 | Phase 5 | Complete |
 | HIST-04 | Phase 5 | Complete |
-| UI-01 | Phase 1 | Pending |
+| UI-01 | Phase 1 | Complete |
 | UI-02 | Phase 2 | Complete |
 | UI-03 | Phase 4 | Complete |
 | UI-04 | Phase 5 | Complete |
-| UI-05 | Phase 1 | Pending |
+| UI-05 | Phase 1 | Complete |
 | QUAL-01 | Phase 3 | Complete |
 | QUAL-02 | Phase 4 | Complete |
-| QUAL-03 | Phase 1 | Pending |
+| QUAL-03 | Phase 1 | Complete |
 | QUAL-04 | Phase 3 | Complete |
 
 **Coverage:**
@@ -132,4 +132,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-06-27*
-*Last updated: 2026-06-29 after phase 04 completion*
+*Last updated: 2026-06-29 after phase 01 requirement sync*
