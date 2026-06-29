@@ -68,5 +68,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>L'accès à l'appareil photo est requis pour scanner des codes QR.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>L'accès à la galerie est requis pour sauvegarder les codes QR générés.</string>
 </dict>
 </plist>
