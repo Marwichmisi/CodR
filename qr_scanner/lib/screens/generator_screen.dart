@@ -243,6 +243,10 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
           ),
         );
       }
+      // Save generation record to history
+      if (result.isSuccess) {
+        widget.viewModel.saveGenerationRecord();
+      }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).clearSnackBars();
@@ -273,6 +277,8 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
       await SharePlus.instance.share(
         ShareParams(files: [XFile(file.path)]),
       );
+      // Save generation record to history
+      widget.viewModel.saveGenerationRecord();
     } catch (e) {
       // Share sheet is self-evident, no SnackBar needed per UI-SPEC
     }
@@ -280,6 +286,8 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
 
   void _copyToClipboard() {
     widget.viewModel.copyToClipboard();
+    // Save generation record to history
+    widget.viewModel.saveGenerationRecord();
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

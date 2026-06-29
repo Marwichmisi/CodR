@@ -4,12 +4,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../services/permission_service.dart';
+import '../services/storage_service.dart';
+import '../models/generation_record.dart';
 
 class GeneratorViewModel extends ChangeNotifier {
   final PermissionService _permissionService;
+  final StorageService? _storageService;
 
-  GeneratorViewModel({required PermissionService permissionService})
-      : _permissionService = permissionService;
+  GeneratorViewModel({required PermissionService permissionService, StorageService? storageService})
+      : _permissionService = permissionService,
+        _storageService = storageService;
 
   Timer? _debounceTimer;
 
@@ -57,6 +61,18 @@ class GeneratorViewModel extends ChangeNotifier {
 
   Future<bool> requestGalleryPermission() {
     return _permissionService.requestGalleryPermission();
+  }
+
+  /// Saves a generation record to the database after user action.
+  Future<void> saveGenerationRecord() async {
+    if (_storageService == null || _inputText.isEmpty) return;
+    final record = GenerationRecord(
+      id: 0,
+      content: _inputText,
+      timestamp: DateTime.now(),
+      type: 'generation',
+    );
+    await _storageService.insertGenerationRecord(record);
   }
 
   @override

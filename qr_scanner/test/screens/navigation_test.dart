@@ -4,11 +4,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:qr_scanner/navigation/app_router.dart';
 import 'package:qr_scanner/services/permission_service.dart';
+import 'package:qr_scanner/services/storage_service.dart';
+import 'package:qr_scanner/models/scan_record.dart';
+import 'package:qr_scanner/models/generation_record.dart';
+import 'package:qr_scanner/models/record_base.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class MockPermissionService extends Mock implements PermissionService {}
 class MockMobileScannerController extends Mock implements MobileScannerController {}
+class MockStorageService extends Mock implements StorageService {}
 
 class FakeMobileScannerState extends Fake implements MobileScannerState {
   @override
@@ -59,9 +65,15 @@ void main() {
   });
 
   Widget createTestApp() {
+    final mockStorageService = MockStorageService();
+    when(() => mockStorageService.getHistory()).thenAnswer((_) async => []);
+    when(() => mockStorageService.getAllScanRecords()).thenAnswer((_) async => []);
+    when(() => mockStorageService.getAllGenerationRecords()).thenAnswer((_) async => []);
+
     return MaterialApp.router(
       routerConfig: createAppRouter(
         permissionService: mockPermissionService,
+        storageService: mockStorageService,
         mockController: mockController,
       ),
     );
@@ -98,7 +110,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Historique'));
       await tester.pumpAndSettle();
-      expect(find.text('Vos scans et générations récents'), findsOneWidget);
+      expect(find.text('Vos scans et générations apparaîtront ici'), findsOneWidget);
     });
 
     testWidgets('tapping Scanner tab returns to Scanner screen',

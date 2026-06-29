@@ -257,6 +257,9 @@ class _ScannerScreenState extends State<ScannerScreen> with WidgetsBindingObserv
       _controller.stop();
     }
 
+    // Save scan record to history
+    widget.viewModel.saveScanRecord(content);
+
     // Détecter le type de contenu
     widget.resultViewModel.detectContentType(content);
 
