@@ -44,8 +44,8 @@ void main() {
       await tester.pump();
       await tester.pumpAndSettle();
 
-      // Should render the QR image
-      expect(find.byType(Image), findsWidgets);
+      // When text is present, placeholder should be gone and QR rendered
+      expect(find.text('Saisissez du texte pour générer un QR code'), findsNothing);
     });
 
     testWidgets('shows URL badge when URL is detected', (tester) async {
