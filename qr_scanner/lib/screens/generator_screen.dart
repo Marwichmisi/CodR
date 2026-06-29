@@ -8,7 +8,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:saver_gallery/saver_gallery.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../theme/app_theme.dart';
 import '../viewmodels/generator_viewmodel.dart';
@@ -204,8 +203,8 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
   }
 
   Future<void> _saveToGallery() async {
-    final status = await Permission.photos.request();
-    if (!status.isGranted) {
+    final granted = await widget.viewModel.requestGalleryPermission();
+    if (!granted) {
       if (mounted) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(

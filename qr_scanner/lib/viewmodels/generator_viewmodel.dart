@@ -55,6 +55,10 @@ class GeneratorViewModel extends ChangeNotifier {
     Clipboard.setData(ClipboardData(text: _inputText));
   }
 
+  Future<bool> requestGalleryPermission() {
+    return _permissionService.requestGalleryPermission();
+  }
+
   @override
   void dispose() {
     _debounceTimer?.cancel();
