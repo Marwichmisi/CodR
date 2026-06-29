@@ -1,7 +1,8 @@
 ---
 phase: 5
 slug: history-data-persistence
-status: draft
+status: approved
+reviewed_at: 2026-06-29
 shadcn_initialized: false
 preset: not applicable (Flutter/Material 3)
 created: 2026-06-29
@@ -248,11 +249,11 @@ Flutter/Material 3 project — no web component registry.
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: FLAG (non-blocking — icon-only type labels lack text fallback for accessibility; consider adding `Semantics(label:)` wrapper)
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-06-29
