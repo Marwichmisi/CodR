@@ -17,7 +17,6 @@ class ScanRecord extends RecordBase {
     required this.type,
   });
 
-  @override
   factory ScanRecord.fromJson(Map<String, dynamic> json) {
     return ScanRecord(
       id: json['id'] as int,

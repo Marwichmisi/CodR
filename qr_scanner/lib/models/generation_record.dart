@@ -17,7 +17,6 @@ class GenerationRecord extends RecordBase {
     required this.type,
   });
 
-  @override
   factory GenerationRecord.fromJson(Map<String, dynamic> json) {
     return GenerationRecord(
       id: json['id'] as int,

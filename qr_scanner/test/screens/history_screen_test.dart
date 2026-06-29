@@ -307,9 +307,14 @@ void main() {
       final records = [
         ScanRecord(id: 1, content: 'scan content', timestamp: DateTime.now(), type: 'scan'),
       ];
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => records);
+      // Use sequential answers: first call returns records, subsequent calls return empty
+      var getHistoryCallCount = 0;
+      when(() => mockStorageService.getHistory()).thenAnswer((_) async {
+        getHistoryCallCount++;
+        if (getHistoryCallCount == 1) return records;
+        return [];
+      });
       when(() => mockStorageService.delete('scan_records', 1)).thenAnswer((_) async {});
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => []);
       final viewModel = HistoryViewModel(storageService: mockStorageService);
 
       await tester.pumpWidget(buildApp(viewModel));
@@ -327,9 +332,13 @@ void main() {
       final records = [
         ScanRecord(id: 1, content: 'scan content', timestamp: DateTime.now(), type: 'scan'),
       ];
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => records);
+      var getHistoryCallCount = 0;
+      when(() => mockStorageService.getHistory()).thenAnswer((_) async {
+        getHistoryCallCount++;
+        if (getHistoryCallCount == 1) return records;
+        return [];
+      });
       when(() => mockStorageService.delete('scan_records', 1)).thenAnswer((_) async {});
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => []);
       final viewModel = HistoryViewModel(storageService: mockStorageService);
 
       await tester.pumpWidget(buildApp(viewModel));
@@ -350,9 +359,13 @@ void main() {
       final records = [
         ScanRecord(id: 1, content: 'scan content', timestamp: DateTime.now(), type: 'scan'),
       ];
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => records);
+      var getHistoryCallCount = 0;
+      when(() => mockStorageService.getHistory()).thenAnswer((_) async {
+        getHistoryCallCount++;
+        if (getHistoryCallCount == 1) return records;
+        return [];
+      });
       when(() => mockStorageService.delete('scan_records', 1)).thenAnswer((_) async {});
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => []);
       final viewModel = HistoryViewModel(storageService: mockStorageService);
 
       await tester.pumpWidget(buildApp(viewModel));
@@ -374,7 +387,6 @@ void main() {
       final records = [
         ScanRecord(id: 1, content: 'scan content', timestamp: DateTime.now(), type: 'scan'),
       ];
-      when(() => mockStorageService.getHistory()).thenAnswer((_) async => records);
       when(() => mockStorageService.getHistory()).thenAnswer((_) async => records);
       final viewModel = HistoryViewModel(storageService: mockStorageService);
 

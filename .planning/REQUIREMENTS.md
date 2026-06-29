@@ -38,17 +38,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Historique
 
-- [ ] **HIST-01**: Stocker les scans et générations en SQLite (sqflite)
-- [ ] **HIST-02**: Afficher l'historique des scans/rations récentes
-- [ ] **HIST-03**: Rechercher/filtrer dans l'historique
-- [ ] **HIST-04**: Supprimer des entrées de l'historique
+- [x] **HIST-01**: Stocker les scans et générations en SQLite (sqflite)
+- [x] **HIST-02**: Afficher l'historique des scans/rations récentes
+- [x] **HIST-03**: Rechercher/filtrer dans l'historique
+- [x] **HIST-04**: Supprimer des entrées de l'historique
 
 ### UI/UX
 
 - [ ] **UI-01**: Interface Material 3 avec navigation intuitive (bottom nav ou tabs)
 - [x] **UI-02**: Écran Scanner avec vue caméra et overlay
 - [x] **UI-03**: Écran Génération avec champ texte et prévisualisation QR
-- [ ] **UI-04**: Écran Historique avec liste et recherche
+- [x] **UI-04**: Écran Historique avec liste et recherche
 - [ ] **UI-05**: Widget previews pour les composants UI (skills flutter-add-widget-preview)
 
 ### Qualité
@@ -110,14 +110,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GEN-05 | Phase 4 | Complete |
 | GEN-06 | Phase 4 | Complete |
 | GEN-07 | Phase 4 | Complete |
-| HIST-01 | Phase 5 | Pending |
-| HIST-02 | Phase 5 | Pending |
-| HIST-03 | Phase 5 | Pending |
-| HIST-04 | Phase 5 | Pending |
+| HIST-01 | Phase 5 | Complete |
+| HIST-02 | Phase 5 | Complete |
+| HIST-03 | Phase 5 | Complete |
+| HIST-04 | Phase 5 | Complete |
 | UI-01 | Phase 1 | Pending |
 | UI-02 | Phase 2 | Complete |
 | UI-03 | Phase 4 | Complete |
-| UI-04 | Phase 5 | Pending |
+| UI-04 | Phase 5 | Complete |
 | UI-05 | Phase 1 | Pending |
 | QUAL-01 | Phase 3 | Complete |
 | QUAL-02 | Phase 4 | Complete |
