@@ -13,6 +13,13 @@ Scanner un QR code et obtenir le contenu instantanément, avec la possibilité d
 ### Validated
 
 - [x] Scanner un QR code via caméra et afficher le contenu récupéré (Validated in Phase 02: camera-scanner)
+- [x] Générer un QR code à partir d'un champ texte (max 250 caractères) (Validated in Phase 04: qr-generation)
+- [x] Détecter les URLs dans le texte généré (Validated in Phase 04: qr-generation)
+- [x] Enregistrer le QR code généré en image dans la galerie (Validated in Phase 04: qr-generation)
+- [x] Partager le QR code généré via le share sheet natif (Validated in Phase 04: qr-generation)
+- [x] Copier le contenu du QR code dans le presse-papiers (Validated in Phase 04: qr-generation)
+- [x] Interface Material 3 avec navigation intuitive (Validated in Phase 04: qr-generation)
+- [x] Tests de widgets pour l'écran de génération (Validated in Phase 04: qr-generation)
 
 ### Active
 
@@ -79,4 +86,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-28 after phase 02 completion*
+*Last updated: 2026-06-29 after phase 04 completion*
