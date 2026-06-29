@@ -107,7 +107,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       // Filter chips
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 8,
                           children: [
                             FilterChip(
                               label: const Text('Tout'),
@@ -121,7 +122,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     : Colors.grey.shade300,
                               ),
                             ),
-                            const SizedBox(width: 8),
                             FilterChip(
                               label: const Text('Scans'),
                               selected: widget.viewModel.selectedType == RecordType.scan,
@@ -134,7 +134,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     : Colors.grey.shade300,
                               ),
                             ),
-                            const SizedBox(width: 8),
                             FilterChip(
                               label: const Text('Générations'),
                               selected: widget.viewModel.selectedType == RecordType.generation,
