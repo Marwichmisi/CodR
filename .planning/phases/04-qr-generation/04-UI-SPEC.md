@@ -1,10 +1,11 @@
 ---
 phase: 4
 slug: qr-generation
-status: draft
+status: approved
 shadcn_initialized: false
 preset: not applicable (Flutter/Material 3)
 created: 2026-06-28
+reviewed_at: 2026-06-28
 ---
 
 # Phase 4 — UI Design Contract
@@ -129,7 +130,7 @@ Accent reserved for:
 
 #### QR Preview / Placeholder
 - **When text is empty**: Center-aligned column with `Icons.qr_code` (64px, `colorScheme.primary`) and text "Saisissez du texte pour générer un QR code" (`Body` size, `colorScheme.onSurfaceVariant`)
-- **When text is present**: `QrImage` widget from `qr_flutter`, data = decoded text (with `https://` prefix if URL detected), size = 200px (responsive: min(200, maxWidth - 48)), eyeStyle/fill/color = black/white (default)
+- **When text is present**: `QrImageView` widget from `qr_flutter`, data = decoded text (with `https://` prefix if URL detected), size = 300px (per D-01: fixed 300x300px output), eyeStyle/fill/color = black/white (default)
 - **Debounce**: 300ms — QR updates 300ms after user stops typing
 
 #### Action Buttons
@@ -203,14 +204,15 @@ The executor MUST apply these Flutter skills during implementation:
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: FLAG (recommendation: add explicit focal point declaration)
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** APPROVED — 2026-06-28
+**Recommendation:** Add focal point declaration: "Primary visual anchor: QR Preview (center). Visual hierarchy flows: TextField → QR Preview → Action Buttons."
 
 ---
 

@@ -159,7 +159,7 @@ flutter pub deps | grep saver_gallery
 │  │  └─────────────────────────────────────────────┘│   │
 │  │                                                 │    │
 │  │  ┌─ QR Preview / Placeholder ──────────────────┐│   │
-│  │  │  QrImage(data: viewModel.qrText, size: 200) ││   │
+│  │  │  QrImageView(data: viewModel.qrText, size: 300) ││   │
 │  │  │  OR placeholder when empty                   ││   │
 │  │  └─────────────────────────────────────────────┘│   │
 │  │                                                 │    │
@@ -500,19 +500,19 @@ GoRoute(
 | A3 | `share_plus ^11.0.0` is the correct version — v13.1.0 is latest per changelog | Standard Stack | Planner should use latest stable version |
 | A4 | `QrImageView` is the correct widget name in qr_flutter v4.x | Architecture Patterns | Older versions used `QrImage` — must verify at install time |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **qr_flutter version compatibility**
+1. **qr_flutter version compatibility** (RESOLVED: plans use `flutter pub add qr_flutter` to get latest stable; D-01 specifies 300x300px output — implementer verifies widget name and version at install time)
    - What we know: CONTEXT.md D-01 says `^5.2.0` but pub.dev shows latest as v4.1.0
    - What's unclear: Whether v5 exists or D-01 references a future version
    - Recommendation: Planner should run `flutter pub add qr_flutter` to get latest stable and verify widget name
 
-2. **Gallery save package choice**
+2. **Gallery save package choice** (RESOLVED: `saver_gallery` selected — actively maintained, HarmonyOS support, better than deprecated `image_gallery_saver`)
    - What we know: CONTEXT.md D-01 mentions `image_gallery_saver` but it's poorly maintained
    - What's unclear: User preference between `saver_gallery`, `image_gallery_saver_plus`, or the original
    - Recommendation: Use `saver_gallery` (fluttercandies, actively maintained, HarmonyOS support) — present as recommendation in plan
 
-3. **QR image capture mechanism**
+3. **QR image capture mechanism** (RESOLVED: RepaintBoundary capture pattern — `toImage(pixelRatio: 3.0)` then `toByteData(format: ImageByteFormat.png)`)
    - What we know: Need to convert QrImageView widget to PNG bytes for save/share
    - What's unclear: Whether `qr_flutter` provides built-in export or requires RepaintBoundary capture
    - Recommendation: Check qr_flutter docs for `toImage()` / export capability; fallback to RepaintBoundary pattern
