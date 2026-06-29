@@ -89,7 +89,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Générateur'));
       await tester.pumpAndSettle();
-      expect(find.text('Créez un QR code à partir de texte'), findsOneWidget);
+      expect(find.text('Saisissez du texte pour générer un QR code'), findsOneWidget);
     });
 
     testWidgets('tapping History tab shows History screen',

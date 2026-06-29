@@ -28,13 +28,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Génération
 
-- [ ] **GEN-01**: Générer un QR code à partir d'un champ texte avec `qr_flutter`
-- [ ] **GEN-02**: Limiter le champ texte à 250 caractères avec compteur
-- [ ] **GEN-03**: Détecter les URLs dans le texte généré
-- [ ] **GEN-04**: Enregistrer le QR code généré en image dans la galerie
-- [ ] **GEN-05**: Gérer les permissions galerie (iOS/Android)
-- [ ] **GEN-06**: Partager le QR code via le share sheet natif (`share_plus`)
-- [ ] **GEN-07**: Copier le contenu dans le presse-papiers
+- [x] **GEN-01**: Générer un QR code à partir d'un champ texte avec `qr_flutter`
+- [x] **GEN-02**: Limiter le champ texte à 250 caractères avec compteur
+- [x] **GEN-03**: Détecter les URLs dans le texte généré
+- [x] **GEN-04**: Enregistrer le QR code généré en image dans la galerie
+- [x] **GEN-05**: Gérer les permissions galerie (iOS/Android)
+- [x] **GEN-06**: Partager le QR code via le share sheet natif (`share_plus`)
+- [x] **GEN-07**: Copier le contenu dans le presse-papiers
 
 ### Historique
 
@@ -47,14 +47,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **UI-01**: Interface Material 3 avec navigation intuitive (bottom nav ou tabs)
 - [x] **UI-02**: Écran Scanner avec vue caméra et overlay
-- [ ] **UI-03**: Écran Génération avec champ texte et prévisualisation QR
+- [x] **UI-03**: Écran Génération avec champ texte et prévisualisation QR
 - [ ] **UI-04**: Écran Historique avec liste et recherche
 - [ ] **UI-05**: Widget previews pour les composants UI (skills flutter-add-widget-preview)
 
 ### Qualité
 
 - [~] **QUAL-01**: Tests unitaires pour les ViewModels et Repositories
-- [ ] **QUAL-02**: Tests de widgets pour les écrans principaux (skills flutter-add-widget-test)
+- [x] **QUAL-02**: Tests de widgets pour les écrans principaux (skills flutter-add-widget-test)
 - [ ] **QUAL-03**: Layout responsive (skills flutter-build-responsive-layout)
 - [~] **QUAL-04**: Gestion correcte des erreurs et états de chargement
 
@@ -103,24 +103,24 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCAN-06 | Phase 2 | Complete |
 | SCAN-07 | Phase 3 | Complete |
 | SCAN-08 | Phase 3 | Complete |
-| GEN-01 | Phase 4 | Pending |
-| GEN-02 | Phase 4 | Pending |
-| GEN-03 | Phase 4 | Pending |
-| GEN-04 | Phase 4 | Pending |
-| GEN-05 | Phase 4 | Pending |
-| GEN-06 | Phase 4 | Pending |
-| GEN-07 | Phase 4 | Pending |
+| GEN-01 | Phase 4 | Complete |
+| GEN-02 | Phase 4 | Complete |
+| GEN-03 | Phase 4 | Complete |
+| GEN-04 | Phase 4 | Complete |
+| GEN-05 | Phase 4 | Complete |
+| GEN-06 | Phase 4 | Complete |
+| GEN-07 | Phase 4 | Complete |
 | HIST-01 | Phase 5 | Pending |
 | HIST-02 | Phase 5 | Pending |
 | HIST-03 | Phase 5 | Pending |
 | HIST-04 | Phase 5 | Pending |
 | UI-01 | Phase 1 | Pending |
 | UI-02 | Phase 2 | Complete |
-| UI-03 | Phase 4 | Pending |
+| UI-03 | Phase 4 | Complete |
 | UI-04 | Phase 5 | Pending |
 | UI-05 | Phase 1 | Pending |
 | QUAL-01 | Phase 3 | Complete |
-| QUAL-02 | Phase 4 | Pending |
+| QUAL-02 | Phase 4 | Complete |
 | QUAL-03 | Phase 1 | Pending |
 | QUAL-04 | Phase 3 | Complete |
 
@@ -132,4 +132,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-06-27*
-*Last updated: 2026-06-27 after initial definition*
+*Last updated: 2026-06-29 after phase 04 completion*

@@ -297,6 +297,10 @@ class _MockGrantedPermissionService implements PermissionService {
   Future<bool> requestCameraPermission() async => true;
   @override
   Future<bool> openSettings() async => true;
+  @override
+  Future<bool> hasGalleryPermission() async => true;
+  @override
+  Future<bool> requestGalleryPermission() async => true;
 }
 
 class _MockDeniedPermissionService implements PermissionService {
@@ -306,6 +310,10 @@ class _MockDeniedPermissionService implements PermissionService {
   Future<bool> requestCameraPermission() async => false;
   @override
   Future<bool> openSettings() async => true;
+  @override
+  Future<bool> hasGalleryPermission() async => false;
+  @override
+  Future<bool> requestGalleryPermission() async => false;
 }
 
 @Preview(name: 'Scanner Screen - Granted', group: 'Screens')
