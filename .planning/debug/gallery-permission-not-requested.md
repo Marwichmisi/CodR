@@ -1,5 +1,5 @@
 ---
-status: investigating
+status: resolved
 trigger: "Flutter app does not request gallery permission when user taps Save button in GeneratorScreen"
 created: 2025-01-15T00:00:00Z
 updated: 2025-01-15T00:02:00Z
@@ -63,3 +63,6 @@ fix: "1) Add READ_MEDIA_IMAGES and READ_EXTERNAL_STORAGE to AndroidManifest.xml 
 verification: "After fix, tapping Save should show permission dialog on both Android and iOS. Permission should be visible in app settings."
 
 files_changed: []
+
+verification: "All issues already fixed in current codebase. AndroidManifest has gallery permissions, Info.plist has NSPhotoLibraryUsageDescription, and screen uses PermissionService via ViewModel."
+resolved_at: "2026-06-29T00:00:00Z"
