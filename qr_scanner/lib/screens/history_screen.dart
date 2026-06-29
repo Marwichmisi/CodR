@@ -19,10 +19,18 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     widget.viewModel.loadRecords();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -39,10 +47,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               child: ListenableBuilder(
                 listenable: widget.viewModel,
                 builder: (context, _) {
-                  if (widget.viewModel.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
+                  // Error state
                   if (widget.viewModel.error != null) {
                     return Center(
                       child: Column(
@@ -69,58 +74,212 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     );
                   }
 
-                  if (widget.viewModel.filteredRecords.isEmpty) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.history,
-                            size: 64,
-                            color: Theme.of(context).colorScheme.primary,
+                  // Main content with search, filter, and list
+                  return Column(
+                    children: [
+                      // Search bar
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: TextField(
+                          controller: _searchController,
+                          onChanged: widget.viewModel.setSearchQuery,
+                          decoration: InputDecoration(
+                            hintText: 'Rechercher dans l\'historique...',
+                            prefixIcon: const Icon(Icons.search),
+                            suffixIcon: widget.viewModel.searchQuery.isNotEmpty
+                                ? IconButton(
+                                    icon: const Icon(Icons.clear),
+                                    onPressed: () {
+                                      _searchController.clear();
+                                      widget.viewModel.setSearchQuery('');
+                                    },
+                                  )
+                                : null,
+                            fillColor: const Color(0xFFF4FAFC),
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                           ),
-                          const SizedBox(height: 32),
-                          Text(
-                            'Aucun historique',
-                            style: Theme.of(context).textTheme.displayMedium,
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            'Vos scans et générations apparaîtront ici',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ],
+                        ),
                       ),
-                    );
-                  }
-
-                  return ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    itemCount: widget.viewModel.filteredRecords.length,
-                    itemBuilder: (context, index) {
-                      final record = widget.viewModel.filteredRecords[index];
-                      final isScan = record.type == 'scan';
-                      return Card(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 4,
+                      // Filter chips
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                        child: Row(
+                          children: [
+                            FilterChip(
+                              label: const Text('Tout'),
+                              selected: widget.viewModel.selectedType == null,
+                              onSelected: (_) => widget.viewModel.setFilter(null),
+                              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                              checkmarkColor: Theme.of(context).colorScheme.primary,
+                              side: BorderSide(
+                                color: widget.viewModel.selectedType == null
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.grey.shade300,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            FilterChip(
+                              label: const Text('Scans'),
+                              selected: widget.viewModel.selectedType == RecordType.scan,
+                              onSelected: (_) => widget.viewModel.setFilter(RecordType.scan),
+                              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                              checkmarkColor: Theme.of(context).colorScheme.primary,
+                              side: BorderSide(
+                                color: widget.viewModel.selectedType == RecordType.scan
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.grey.shade300,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            FilterChip(
+                              label: const Text('Générations'),
+                              selected: widget.viewModel.selectedType == RecordType.generation,
+                              onSelected: (_) => widget.viewModel.setFilter(RecordType.generation),
+                              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                              checkmarkColor: Theme.of(context).colorScheme.primary,
+                              side: BorderSide(
+                                color: widget.viewModel.selectedType == RecordType.generation
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.grey.shade300,
+                              ),
+                            ),
+                          ],
                         ),
-                        child: ListTile(
-                          leading: Icon(
-                            isScan ? Icons.qr_code_scanner : Icons.qr_code,
-                            color: Theme.of(context).colorScheme.primary,
+                      ),
+                      // Empty state when no records at all
+                      if (widget.viewModel.allRecords.isEmpty)
+                        Expanded(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.history,
+                                  size: 64,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                const SizedBox(height: 32),
+                                Text(
+                                  'Aucun historique',
+                                  style: Theme.of(context).textTheme.displayMedium,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Vos scans et générations apparaîtront ici',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              ],
+                            ),
                           ),
-                          title: Text(
-                            record.content,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                        )
+                      // No results state when search/filter has no matches
+                      else if (widget.viewModel.filteredRecords.isEmpty)
+                        Expanded(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.search_off,
+                                  size: 64,
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Aucun résultat',
+                                  style: Theme.of(context).textTheme.headlineSmall,
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  'Aucune entrée ne correspond à votre recherche',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ],
+                            ),
                           ),
-                          subtitle: Text(
-                            _formatTimestamp(record.timestamp),
+                        )
+                      else
+                        // Record list
+                        Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            itemCount: widget.viewModel.filteredRecords.length,
+                            itemBuilder: (context, index) {
+                              final record = widget.viewModel.filteredRecords[index];
+                              final isScan = record.type == 'scan';
+                              return Dismissible(
+                                key: ValueKey(record.id),
+                                direction: DismissDirection.endToStart,
+                                background: Container(
+                                  alignment: Alignment.centerRight,
+                                  padding: const EdgeInsets.only(right: 16),
+                                  color: const Color(0xFFD32F2F),
+                                  child: const Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                confirmDismiss: (direction) async {
+                                  return await showDialog<bool>(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      icon: const Icon(
+                                        Icons.delete_forever,
+                                        color: Color(0xFFD32F2F),
+                                        size: 48,
+                                      ),
+                                      title: const Text('Supprimer l\'entrée'),
+                                      content: const Text(
+                                        'Voulez-vous vraiment supprimer cette entrée de l\'historique ? Cette action est irréversible.',
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.of(context).pop(false),
+                                          child: const Text('Annuler'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.of(context).pop(true),
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: const Color(0xFFD32F2F),
+                                          ),
+                                          child: const Text('Supprimer'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                onDismissed: (direction) {
+                                  widget.viewModel.deleteRecord(record);
+                                },
+                                child: Card(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 4,
+                                  ),
+                                  child: ListTile(
+                                    leading: Icon(
+                                      isScan ? Icons.qr_code_scanner : Icons.qr_code,
+                                      color: Theme.of(context).colorScheme.primary,
+                                    ),
+                                    title: Text(
+                                      record.content,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    subtitle: Text(
+                                      _formatTimestamp(record.timestamp),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      );
-                    },
+                    ],
                   );
                 },
               ),
