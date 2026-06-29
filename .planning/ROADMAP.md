@@ -103,13 +103,12 @@ Plans:
   4. Generated QR can be shared via native share sheet
   5. Content can be copied to clipboard and widget tests pass for generator screen
 
-**Plans**: 3 plans
+**Plans**: 2 plans
 
 Plans:
 
-- [ ] 04-01: QR generation with character limit and URL detection (qr_flutter)
-- [ ] 04-02: Save to gallery and share functionality (image_gallery_saver, share_plus, path_provider)
-- [ ] 04-03: Clipboard copy, widget tests, and generator screen UI polish (flutter-add-widget-test)
+- [ ] 04-01: GeneratorViewModel with debounce, URL detection, clipboard, and PermissionService gallery extension (qr_flutter, saver_gallery, share_plus)
+- [ ] 04-02: GeneratorScreen UI with text input, QR preview, action buttons, widget tests, and router wiring
 
 ### Phase 5: History & Data Persistence
 
@@ -137,5 +136,5 @@ Plans:
 | 1. Foundation & Navigation | 4/4 | ✓ Complete | 2026-06-28 |
 | 2. Camera Scanner | 3/3 | Complete    | 2026-06-28 |
 | 3. Scan Results & Content Display | 0/2 | Not started | - |
-| 4. QR Generation | 0/3 | Not started | - |
+| 4. QR Generation | 0/2 | Not started | - |
 | 5. History & Data Persistence | 0/2 | Not started | - |
