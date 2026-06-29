@@ -3,11 +3,11 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 05
-status: Phase 05 shipped — PR #5
+status: Phase 05 shipped — PR #6
 stopped_at: Phase 05 UI-SPEC approved
 last_updated: "2026-06-29T20:00:00.000Z"
 last_activity: 2026-06-29
-last_activity_desc: Phase 05 shipped — PR #5
+last_activity_desc: Phase 05 shipped — PR #6
 progress:
   total_phases: 5
   completed_phases: 5
