@@ -1,9 +1,9 @@
 ---
 status: complete
 phase: 04-qr-generation
-source: 04-01-SUMMARY.md, 04-02-SUMMARY.md
-started: 2026-06-29T12:00:00Z
-updated: 2026-06-29T12:15:00Z
+source: 04-01-SUMMARY.md, 04-02-SUMMARY.md, 04-03-SUMMARY.md
+started: 2026-06-29T14:00:00Z
+updated: 2026-06-29T14:15:00Z
 ---
 
 ## Current Test
@@ -12,78 +12,58 @@ updated: 2026-06-29T12:15:00Z
 
 ## Tests
 
-### 1. Confirmation de la couverture
-expected: |
-  Tous les livrables de la phase 04 sont couverts par des tests automatisés en passage.
-result: issue
-reported: "l'app ne demande pas l'accès à la galerie et meme dans les paramètres c'est pas visible pour que je l'accorde"
-severity: major
+### 1. Démarrage à froid de l'application
+expected: L'application compile et démarre sans erreur. L'écran Générateur est accessible via la navigation.
+result: pass
 
-### 2. PermissionService étendu avec méthodes de permission galerie
-expected: PermissionService a hasGalleryPermission() et requestGalleryPermission()
+### 2. Accès à l'écran Générateur
+expected: En appuyant sur l'onglet Générateur dans la barre de navigation, l'écran Générateur s'affiche avec un champ de texte vide et un espace QR placeholder.
+result: pass
+
+### 3. Saisie de texte et prévisualisation QR
+expected: En tapant du texte dans le champ, un code QR se génère automatiquement et s'affiche en dessous. Un compteur de caractères (n/250) est visible.
+result: pass
+
+### 4. Détection d'URL
+expected: En tapant une URL (ex: https://example.com), un badge "URL détectée" apparaît au-dessus du QR.
+result: pass
+
+### 5. Bouton Sauvegarder avec permission galerie
+expected: En appuyant sur "Sauvegarder", l'application demande l'accès à la galerie (popup système). Si accordé, un SnackBar de confirmation s'affiche.
+result: pass
+
+### 6. Bouton Partager
+expected: En appuyant sur "Partager", le panneau de partage natif s'ouvre avec le QR code.
+result: pass
+
+### 7. Bouton Copier
+expected: En appuyant sur "Copier", un SnackBar "Copié !" s'affiche confirmant la copie du texte dans le presse-papier.
+result: pass
+
+### 8. Suite de tests complète sans régression
+expected: flutter test affiche 60 tests en passage, aucune régression.
+result: pass
+
+### 9. PermissionService avec méthodes galerie
+expected: PermissionService a bien les méthodes hasGalleryPermission() et requestGalleryPermission() et elles fonctionnent.
 result: pass
 source: automated
 coverage_id: D2
 
-### 3. Trois nouveaux packages installés (qr_flutter, share_plus, saver_gallery)
-expected: Les packages qr_flutter, share_plus et saver_gallery sont dans pubspec.yaml
-result: pass
-source: automated
-coverage_id: D3
-
-### 4. GeneratorScreen avec saisie texte, prévisualisation QR, badge URL, boutons d'action, mise en page responsive
-expected: L'écran affiche un champ de texte, un QR preview, un badge URL et 3 boutons d'action
+### 10. Manifests plateforme avec permissions galerie
+expected: AndroidManifest.xml contient READ_MEDIA_IMAGES et READ_EXTERNAL_STORAGE. Info.plist contient NSPhotoLibraryUsageDescription.
 result: pass
 source: automated
 coverage_id: D1
 
-### 5. Actions Sauvegarder/Partager/Copier avec SnackBar et gestion des permissions
-expected: Chaque bouton déclenche l'action correspondante et affiche un SnackBar de confirmation
-result: pass
-source: automated
-coverage_id: D2
-
-### 6. Intégration du routeur avec injection du GeneratorViewModel
-expected: Le routeur /generator injecte correctement le ViewModel
-result: pass
-source: automated
-coverage_id: D3
-
-### 7. Suite de tests complète sans régression (60/60 tests)
-expected: flutter test affiche 60 tests en passage
-result: pass
-source: automated
-coverage_id: D4
-
-### 8. L'application démarre sans erreur à froid (smoke test)
-expected: L'application compile et démarre sans erreur, l'écran Générateur est accessible
-result: pass
-
 ## Summary
 
-total: 8
-passed: 8
-issues: 1
+total: 10
+passed: 10
+issues: 0
 pending: 0
 skipped: 0
 
 ## Gaps
 
-- truth: "L'application demande l'accès à la galerie via le bouton Sauvegarder"
-  status: failed
-  reason: "User reported: l'app ne demande pas l'accès à la galerie et meme dans les paramètres c'est pas visible pour que je l'accorde"
-  severity: major
-  test: 1
-  root_cause: "AndroidManifest.xml manque READ_MEDIA_IMAGES/READ_EXTERNAL_STORAGE, Info.plist manque NSPhotoLibraryUsageDescription, et generator_screen.dart bypass PermissionService en appelant Permission.photos.request() directement"
-  artifacts:
-    - path: "qr_scanner/android/app/src/main/AndroidManifest.xml"
-      issue: "Manque permissions galerie (READ_MEDIA_IMAGES, READ_EXTERNAL_STORAGE)"
-    - path: "qr_scanner/ios/Runner/Info.plist"
-      issue: "Manque NSPhotoLibraryUsageDescription"
-    - path: "qr_scanner/lib/screens/generator_screen.dart"
-      issue: "Appelle Permission.photos.request() au lieu d'utiliser PermissionService"
-  missing:
-    - "Ajouter READ_MEDIA_IMAGES et READ_EXTERNAL_STORAGE dans AndroidManifest.xml"
-    - "Ajouter NSPhotoLibraryUsageDescription dans Info.plist"
-    - "Refacto generator_screen.dart pour utiliser PermissionService.requestGalleryPermission()"
-  debug_session: ".planning/debug/gallery-permission-not-requested.md"
+[none yet]
