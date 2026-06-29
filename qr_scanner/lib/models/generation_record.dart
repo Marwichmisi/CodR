@@ -1,7 +1,13 @@
-class GenerationRecord {
+import 'record_base.dart';
+
+class GenerationRecord extends RecordBase {
+  @override
   final int id;
+  @override
   final String content;
+  @override
   final DateTime timestamp;
+  @override
   final String type; // 'scan' or 'generation'
 
   const GenerationRecord({
@@ -11,6 +17,7 @@ class GenerationRecord {
     required this.type,
   });
 
+  @override
   factory GenerationRecord.fromJson(Map<String, dynamic> json) {
     return GenerationRecord(
       id: json['id'] as int,
